@@ -23,7 +23,8 @@ export function useStartServe(): {
     category,
     status,
     address,
-    tel
+    tel,
+    provider
   ): Promise<void> => {
     const payload = {
       fullname,
@@ -33,6 +34,7 @@ export function useStartServe(): {
       status,
       address,
       tel,
+      provider,
     };
 
     try {
@@ -50,6 +52,8 @@ export function useStartServe(): {
         userInfo._id = user._id;
         userInfo.token = token;
         userInfo.isLogin = true;
+        userInfo.category = user.category;
+        userInfo.provider = user.provider;
       }
       if (userInfo.token) {
         await router.push("/my-account");
@@ -95,6 +99,7 @@ export function useEditUser(): {
         userInfo.fullname = user.fullname;
         userInfo.email = user.email;
         userInfo._id = user._id;
+        userInfo.provider = user.provider;
         userInfo.token = token;
         userInfo.isLogin = true;
       }

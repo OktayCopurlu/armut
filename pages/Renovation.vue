@@ -1,7 +1,5 @@
 <template>
-  <div>
     <Category />
-  </div>
 </template>
 
 <script lang='ts'>

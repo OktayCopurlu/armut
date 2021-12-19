@@ -1,5 +1,5 @@
 <template>
-    <RegisterStatus />
+  <Register :provider="true" :button_text="'Register as a Service Provider'" />
 </template>
 
 <script lang='ts'>

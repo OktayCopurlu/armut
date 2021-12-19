@@ -1,7 +1,5 @@
 <template>
-  <div>
     <UserPage />
-  </div>
 </template>
 
 <script lang='ts'>

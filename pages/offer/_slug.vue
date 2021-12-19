@@ -1,10 +1,10 @@
 <template>
-    <RegisterStatus />
+  <Offer />
 </template>
 
 <script lang='ts'>
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
-import { initAuth } from "../store/user";
+import { initAuth } from "../../store/user";
 import protectedRouter from "~/auth";
 export default defineComponent({
   setup() {

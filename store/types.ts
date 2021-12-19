@@ -14,6 +14,8 @@ export interface UserPageType {
 export interface UserInfoType extends UserPageType {
   token: string;
   isLogin: boolean;
+  provider: boolean;
+  category: string;
 }
 
 export interface RegisterFormType {
@@ -37,6 +39,7 @@ export type SignUpPropsType = (
   address: string,
   status: string,
   category: string,
+  provider: boolean,
   service?: string
 ) => Promise<void>;
 
@@ -65,3 +68,11 @@ export type PhotoType = (
   _id: string,
   photo: string | ArrayBuffer
 ) => Promise<void>;
+
+export interface OfferFormType {
+  city: string;
+  canton: string;
+  more_info: string;
+  date: string;
+  category: string;
+}

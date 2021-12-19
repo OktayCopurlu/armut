@@ -1,5 +1,5 @@
 <template>
-    <RegisterStatus />
+  <Opportunities />
 </template>
 
 <script lang='ts'>

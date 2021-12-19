@@ -12,10 +12,11 @@ export const REGISTER = gql`
     $fullname: String!
     $email: String!
     $password: String!
-    $category: String!
-    $status: String!
+    $category: String
+    $status: String
     $address: String!
     $tel: String!
+    $provider: Boolean!
   ) {
     register(
       fullname: $fullname
@@ -25,6 +26,7 @@ export const REGISTER = gql`
       status: $status
       address: $address
       tel: $tel
+      provider: $provider
     ) {
       token
     }
@@ -68,6 +70,53 @@ export const GET_ALL_CATEGORIES = gql`
   query {
     getAllCategories {
       categories
+    }
+  }
+`;
+
+export const GET_CATEGORY = gql`
+  query ($mainCategory: String!) {
+    getServiceCategory(mainCategory: $mainCategory) {
+      _id
+      mainCategory
+      category
+      users
+      photo
+    }
+  }
+`;
+
+export const CREATE_OFFER = gql`
+  mutation (
+    $canton: String!
+    $city: String!
+    $date: String!
+    $more_info: String!
+    $category: String!
+    $offeredUser: ID!
+  ) {
+    createOffer(
+      canton: $canton
+      city: $city
+      date: $date
+      more_info: $more_info
+      category: $category
+      offeredUser: $offeredUser
+    ) {
+      offeredUser
+    }
+  }
+`;
+export const GET_OPPORTUNITY = gql`
+  query ($category: String!) {
+    getOpportunity(category: $category) {
+      _id
+      canton
+      city
+      date
+      more_info
+      category
+      offeredUser
     }
   }
 `;

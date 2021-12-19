@@ -1,5 +1,5 @@
 <template>
-  <div>Hallo Home Page</div>
+    <Category />
 </template>
 
 <script lang='ts'>

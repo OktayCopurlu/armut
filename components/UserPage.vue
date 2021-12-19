@@ -1,63 +1,68 @@
 <template>
-  <div class="main">
-    <div class="photo">
-      <input
-        type="file"
-        name="photo"
-        id="photo"
-        accept="image/*, .heic"
-        @change="getFile"
-      />
-      <label for="photo"><i class="fas fa-camera"></i></label>
-      <img v-if="userPhoto" :src="userPhoto" alt="user photo" />
-      <img v-else src="../static/person-icon.png" alt="user photo" />
-      <p>Change Photo</p>
+  <div>
+    <li v-if="provider">
+      <nuxt-link to="/opportunities">Opportunities</nuxt-link>
+    </li>
+    <div class="main">
+      <div class="photo">
+        <input
+          type="file"
+          name="photo"
+          id="photo"
+          accept="image/*, .heic"
+          @change="getFile"
+        />
+        <label for="photo"><i class="fas fa-camera"></i></label>
+        <img v-if="userPhoto" :src="userPhoto" alt="user photo" />
+        <img v-else src="../static/person-icon.png" alt="user photo" />
+        <p>Change Photo</p>
+      </div>
+      <form @submit.prevent="submit">
+        <label for="fullname">Full name</label>
+        <input
+          class="input"
+          id="fullname"
+          type="text"
+          name="txt"
+          required
+          v-model="fullname"
+          :default-value="fullname"
+        />
+        <label for="email">Email</label>
+
+        <input
+          class="input"
+          id="email"
+          type="email"
+          name="email"
+          required
+          v-model="email"
+          :default-value="email"
+        />
+        <label for="address">Address</label>
+
+        <input
+          class="input"
+          type="text"
+          id="address"
+          name="address"
+          required
+          v-model="address"
+          :default-value="address"
+        />
+        <label for="phone">Phone Number</label>
+        <input
+          class="input"
+          v-model="tel"
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          :default-value="tel"
+        />
+        <Button :text="'Save'" />
+      </form>
     </div>
-    <form @submit.prevent="submit">
-      <label for="fullname">Full name</label>
-      <input
-        class="input"
-        id="fullname"
-        type="text"
-        name="txt"
-        required
-        v-model="fullname"
-        :default-value="fullname"
-      />
-      <label for="email">Email</label>
-
-      <input
-        class="input"
-        id="email"
-        type="email"
-        name="email"
-        required
-        v-model="email"
-        :default-value="email"
-      />
-      <label for="address">Address</label>
-
-      <input
-        class="input"
-        type="text"
-        id="address"
-        name="address"
-        required
-        v-model="address"
-        :default-value="address"
-      />
-      <label for="phone">Phone Number</label>
-      <input
-        class="input"
-        v-model="tel"
-        type="tel"
-        id="phone"
-        name="phone"
-        required
-        :default-value="tel"
-      />
-      <button>Save</button>
-    </form>
   </div>
 </template>
 
@@ -81,8 +86,9 @@ export default defineComponent({
       tel: userInfo.tel,
       address: userInfo.address,
       userPhoto: userInfo.photo,
+      provider: userInfo.provider,
     });
-
+    console.log(state.provider);
     const { editUser, addPhoto } = useEditUser();
 
     const getFile = (e: any) => {
@@ -128,7 +134,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$media-mobile: "only screen and (max-width : 600px)";
+@import "../static/index";
+li {
+  list-style: none;
+  padding: 1rem;
+  background-color: $green;
+  display: flex;
+  justify-content: flex-end;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    &:hover {
+      color: darken(white, 20%);
+    }
+  }
+}
 
 .main {
   border-radius: 5px;
@@ -184,35 +206,11 @@ $media-mobile: "only screen and (max-width : 600px)";
     font-weight: bold;
   }
   .input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    &:focus {
-      background-color: rgb(226, 239, 241);
-      outline: none;
-    }
+    @include login-register-input;
   }
 
   button {
-    width: 100%;
-    background-color: #4caf50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s linear;
-
-    &:hover {
-      background-color: #2d8032;
-      transition: all 0.3s linear;
-    }
+    @include green-button(1.3rem);
   }
 }
 </style>

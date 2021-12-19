@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import StartServe from "~/components/Register.vue";
+import StartServe from "~/components/RegisterServisProvider.vue";
 
 describe("StartService", () => {
   test("test form if it is correct", async () => {

@@ -1,17 +1,19 @@
 <template>
   <div class="card-container">
-    <div class="card" v-for="category in categories" :key="category.category">
+    <div class="card" v-for="category in categories" :key="category._id">
       <img
         src="https://cdn.armut.com/images/services/tr:w-278,h-168/00727-koltuk-yikama-temizleme.jpg"
         alt="cleaning img"
       />
       <section>
-        <h4>{{ category.category }}</h4>
-        <p>
-          <i class="fas fa-user-friends"></i
-          >{{ category.users.length }} Professional
-        </p>
-        <!-- <p>4.5 (2.000.000 comments)</p> -->
+        <div>
+          <h4>{{ category.category }}</h4>
+          <strong>{{ category.canton }}</strong>
+        </div>
+        <div>
+          <p>{{ category.more_info }}</p>
+          <strong>{{ category.city }}</strong>
+        </div>
       </section>
       <nuxt-link :to="`/offer/${category.category.replace(/ /g, '_')}`">
         <Button :value="category.category" :text="'Rezervation'"
@@ -26,20 +28,23 @@ import {
   reactive,
   defineComponent,
   toRefs,
-  useRoute,
   computed,
 } from "@nuxtjs/composition-api";
-import { states } from "~/store";
-import { useCategory } from "~/store/pageCategories";
+import { userInfo } from "~/store/index";
+import { useOpportunity } from "~/store/opportunity";
 export default defineComponent({
   setup() {
     const state: any = reactive({
-      categories: computed(() => states.mainCategory),
+      categories: [],
+      userCategory: computed(() => userInfo.category),
     });
-    const route = useRoute();
-    const page = route.value.path.substring(1);
-    const { getCategory } = useCategory();
-    getCategory(page);
+
+    const { getOpportunity } = useOpportunity();
+    const result = getOpportunity(state.userCategory);
+    result
+      .then((category) => (state.categories = category))
+      .then(() => console.log(state.categories));
+
     return {
       ...toRefs(state),
     };
@@ -69,8 +74,12 @@ export default defineComponent({
       margin: 0.1rem;
       padding: 0.1rem;
     }
-    h4 {
-      color: $category-color;
+    div {
+      display: flex;
+      justify-content: space-between;
+      h4 {
+        color: $category-color;
+      }
     }
   }
   button {

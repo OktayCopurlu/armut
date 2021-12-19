@@ -44,7 +44,7 @@
           ><img :src="photo" alt="user photo"
         /></nuxt-link>
       </li>
-      <li v-else>
+      <li v-else-if="isLogin">
         <nuxt-link to="/my-account">My Account</nuxt-link>
       </li>
 
@@ -61,7 +61,6 @@ import { userInfo } from "~/store";
 import { useLogin } from "~/store/user";
 import {
   computed,
-  ComputedRef,
   defineComponent,
   reactive,
   toRefs,
@@ -84,12 +83,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
-$media-desktop: "only screen and (max-width : 1024px)";
-$media-tablet: "only screen and (max-width : 768px)";
-$media-mobile: "only screen and (max-width : 600px)";
-$media-mobile-sm: "only screen and (max-width : 480px)";
-
+@import "../static/index";
 nav {
   // position: fixed;
   // width: 100%;
@@ -97,8 +91,8 @@ nav {
 * {
   margin: 0;
   padding: 0;
-  transition: all 0.2s linear;
-  color: white;
+  transition: $transition;
+  color: $white;
   font-size: 1.2vw;
   text-decoration: none;
   list-style: none;
@@ -114,11 +108,11 @@ ul {
     padding: 1rem 1vw;
     a {
       opacity: 0.7;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: $font-family;
 
       &:hover {
         opacity: 1;
-        transition: all 0.2s linear;
+        transition: $transition;
       }
     }
   }

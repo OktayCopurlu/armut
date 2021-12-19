@@ -1,21 +1,18 @@
-<template>
+ <template>
   <div class="main">
     <form @submit.prevent="submit">
-      <div class="floating-form" v-if="provider">
+      <div class="floating-form">
         <input
           type="text"
           id="search"
           name="search"
           v-model="search"
           required
-        /><label class="label" for="search">What service do you provide?</label>
+        /><label class="label" for="search"
+          >Search ! what service do you want to get?</label
+        >
       </div>
-      <div
-        v-if="provider"
-        class="categories"
-        v-for="ctgry in searchedProducts"
-        :key="ctgry"
-      >
+      <div class="categories" v-for="ctgry in searchedProducts" :key="ctgry">
         <input
           v-if="isShowing"
           type="radio"
@@ -27,74 +24,37 @@
         <label v-if="isShowing" :for="ctgry">{{ ctgry }}</label>
       </div>
 
-      <div class="radio-buttons" v-if="provider">
-        <input
-          v-model="status"
-          type="radio"
-          id="person"
-          name="whoAreYou"
-          value="person"
-          required
-        />
-        <label for="person"> Person</label>
-
-        <input
-          v-model="status"
-          type="radio"
-          id="company"
-          name="whoAreYou"
-          value="company"
-          required
-        />
-        <label for="company">Company</label><br />
-      </div>
-
       <div class="floating-form">
         <input
-          id="full-name"
           type="text"
-          name="txt"
+          id="canton"
+          name="canton"
           required
-          v-model="fullname"
-        /><label class="label" for="full-name">Full Name</label>
-      </div>
-      <div class="floating-form">
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          v-model="email"
-        /><label class="label" for="email">Email</label>
-      </div>
-      <div class="floating-form">
-        <input
-          type="password"
-          name="pswd"
-          id="password"
-          required
-          v-model="password"
-        /><label class="label" for="password">Password</label>
+          v-model="canton"
+        /><label class="label" for="canton">Canton</label>
       </div>
       <div class="floating-form">
         <input
           type="text"
-          id="address"
-          name="address"
+          id="city"
+          name="city"
           required
-          v-model="address"
-        /><label class="label" for="address">Address</label>
+          v-model="city"
+        /><label class="label" for="city">City</label>
       </div>
       <div class="floating-form">
-        <input
-          v-model="tel"
-          type="tel"
-          id="phone"
-          name="phone"
-          required
-        /><label class="label" for="phone">Phone</label>
+        <input type="date" id="city" name="city" required v-model="city" />
       </div>
-      <Button :text="button_text" />
+      <div class="floating-form">
+        <textarea
+          v-model="more_info"
+          type="text"
+          id="more-info"
+          name="more-info"
+          required
+        /><label class="label" for="more-info">More information</label>
+      </div>
+      <button>Get Offer</button>
     </form>
   </div>
 </template>
@@ -107,29 +67,25 @@ import {
   computed,
   ref,
   Ref,
+  useRoute,
 } from "@nuxtjs/composition-api";
-import { RegisterFormType } from "~/store/types";
-import { useStartServe } from "~/store/register";
+import { OfferFormType } from "~/store/types";
 import { states } from "~/store";
 import { useCategoryList } from "~/store/categoryList";
-export default defineComponent({
-  props: ["button_text", "provider"],
-  setup(props) {
-    const state: RegisterFormType = reactive({
-      fullname: "",
-      email: "",
-      password: "",
-      tel: "",
-      address: "",
-      status: "",
-      category: "",
-      service: "",
 
+export default defineComponent({
+  setup() {
+    const state: any = reactive({
+      category: "",
+      canton: "",
+      city: "",
+      more_info: "",
       filteredCategories: [],
       categories: computed(() => states.categories),
     });
+    const route = useRoute();
+    const page = route.value.path.substring(7).replace(/_/g, " ");
 
-    const { register } = useStartServe();
     const { getAllCategoryList } = useCategoryList();
     getAllCategoryList();
 
@@ -143,28 +99,14 @@ export default defineComponent({
     const isShowing = computed(() => search.value.length > 2);
 
     const emptyForm = (): void => {
-      state.fullname = "";
-      state.email = "";
-      state.password = "";
-      state.tel = "";
-      state.address = "";
-      state.status = "";
+      state.canton = "";
+      state.city = "";
+      state.more_info = "";
       state.category = "";
-      state.service = "";
     };
-const provider = props.provider
-    const submit = (): void => {
-      register(
-        state.fullname,
-        state.email,
-        state.password,
-        state.category,
-        state.status,
-        state.address,
-        state.tel,
-        provider
-      );
 
+    const submit = (): void => {
+      console.log(state.canton, state.city, state.more_info, state.category);
       emptyForm();
     };
     return {
@@ -195,6 +137,7 @@ const provider = props.provider
     position: relative;
   }
   input,
+  textarea,
   select {
     @include login-register-input;
   }

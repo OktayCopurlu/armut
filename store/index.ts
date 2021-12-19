@@ -10,11 +10,15 @@ export const userInfo: UserInfoType = reactive({
   tel: "",
   isLogin: false,
   photo: "",
+  provider: false,
+  category: "",
 });
 
 interface StateType {
-  categories: any[];
+  categories: string[];
+  mainCategory: Object[];
 }
 export const states: StateType = reactive({
   categories: [],
+  mainCategory: [],
 });

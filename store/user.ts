@@ -7,6 +7,7 @@ import verifyJWT from "./verifyJWT";
 export function initAuth(): void {
   const context = useContext();
   const token: string = context.app.$apolloHelpers.getToken("apollo-token");
+
   if (token) {
     const user = verifyJWT(token);
     userInfo.fullname = user.fullname;
@@ -17,6 +18,8 @@ export function initAuth(): void {
     userInfo.token = token;
     userInfo.isLogin = true;
     userInfo.photo = user.photo;
+    userInfo.provider = user.provider;
+    userInfo.category = user.category;
   }
 }
 
@@ -53,6 +56,8 @@ export function useLogin(): {
         userInfo.token = token;
         userInfo.isLogin = true;
         userInfo.photo = user.photo;
+        userInfo.provider = user.provider;
+        userInfo.category = user.category;
       }
       if (userInfo.token) {
         await router.push("/");
@@ -72,6 +77,8 @@ export function useLogin(): {
     userInfo.photo = "";
     userInfo.address = "";
     userInfo.tel = "";
+    userInfo.category = "";
+    userInfo.provider = false;
     router.push("/login");
   };
   return { login, logout };

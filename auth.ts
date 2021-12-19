@@ -10,9 +10,11 @@ const protectedRouter = () => {
     return router.push("/");
   } else if (
     hasToken &&
-    (route.value.path == "/login" || route.value.path == "/register")
+    (route.value.path == "/login" || route.value.path.includes("/register"))
   ) {
     return router.push("/");
+  } else if (!hasToken && route.value.path.includes("/offer")) {
+    return router.push("/login");
   }
 };
 export default protectedRouter;
