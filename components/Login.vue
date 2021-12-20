@@ -19,8 +19,7 @@
           v-model="password"
         /><label class="label" for="password">Password</label>
       </div>
- <Button :text="'Login'"/>
-      <!-- <button>Login</button> -->
+      <Button text="Login" />
     </form>
   </div>
 </template>
@@ -77,7 +76,6 @@ export default defineComponent({
   }
   .label {
     @include label;
-
   }
   button {
     @include green-button(1.3rem);

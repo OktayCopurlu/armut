@@ -1,80 +1,58 @@
-<template>
+ <template>
   <div class="main">
     <form @submit.prevent="submit">
       <div class="floating-form">
         <input
-          type="text"
-          id="canton"
-          name="canton"
+          type="number"
+          min="0"
+          max="10000"
+          step="1 CHF"
           required
-          v-model="canton"
-        /><label class="label" for="canton">Canton</label>
+          v-model="price"
+        />
+        <label class="label" for="canton">Price</label>
       </div>
-      <div class="floating-form">
-        <input
-          type="text"
-          id="city"
-          name="city"
-          required
-          v-model="city"
-        /><label class="label" for="city">City</label>
-      </div>
-      <div class="floating-form">
-        <input type="date" id="city" name="city" required v-model="date" />
-      </div>
+
       <div class="floating-form">
         <textarea
           v-model="more_info"
           type="text"
           id="more-info"
           name="more-info"
-          rows="4"
           required
         /><label class="label" for="more-info">More information</label>
       </div>
-      <button>Get Offer</button>
+      <h2>{{ price }} CHF</h2>
+      <p>{{ more_info }}</p>
+      <Button text="Give Offer" />
     </form>
   </div>
 </template>
 
 <script lang='ts'>
-import {
-  reactive,
-  defineComponent,
-  toRefs,
-  computed,
-  useRoute,
-} from "@nuxtjs/composition-api";
-import { OfferFormType } from "~/store/types";
-import { useOffer } from "~/store/createOffer";
+import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
+import { useCategoryList } from "~/store/categoryList";
+
 export default defineComponent({
   setup() {
-    const state: OfferFormType = reactive({
-      canton: "",
-      city: "",
+    const state: { price: string; more_info: string } = reactive({
+      price: "",
       more_info: "",
-      date: "",
-      category: "",
     });
-    const route = useRoute();
-    state.category = route.value.path.substring(7).replace(/_/g, " ");
-    const { createOffer } = useOffer();
+
+    const { getAllCategoryList } = useCategoryList();
+    getAllCategoryList();
+
     const emptyForm = (): void => {
-      state.canton = "";
-      state.city = "";
+      state.price = "";
       state.more_info = "";
-      state.date = "";
     };
+
     const submit = (): void => {
-      createOffer(
-        state.canton,
-        state.city,
-        state.date,
-        state.more_info,
-        state.category
-      );
+      console.log(state.price, state.more_info);
       emptyForm();
     };
+
     return {
       ...toRefs(state),
       submit,
@@ -100,7 +78,8 @@ export default defineComponent({
     position: relative;
   }
   input,
-  textarea {
+  textarea,
+  select {
     @include login-register-input;
   }
   .label {
@@ -108,6 +87,22 @@ export default defineComponent({
   }
   button {
     @include green-button(1.3rem);
+  }
+  .radio-buttons {
+    display: flex;
+    align-items: center;
+    * {
+      margin: 0.5rem;
+      width: auto;
+    }
+  }
+  .categories {
+    margin: 0 0.5rem;
+    * {
+      width: auto;
+      padding: 0;
+      margin-right: 0.7rem;
+    }
   }
 }
 @media #{$media-mobile} {

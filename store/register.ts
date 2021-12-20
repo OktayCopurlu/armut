@@ -6,6 +6,7 @@ import {
   SignUpPropsType,
   EditUserPropsType,
   PhotoType,
+  TokenType,
 } from "./types";
 import { userInfo } from "./index";
 
@@ -87,11 +88,11 @@ export function useEditUser(): {
       _id,
     };
     try {
-      const response = await client.mutate({
+      const response: TokenType = await client.mutate({
         mutation: EDIT_USER,
         variables: payload,
       });
-      const token = await response.data.editUser.token;
+      const token = response.data.editUser.token;
 
       await context.app.$apolloHelpers.onLogin(token, "_", "");
       if (token) {
@@ -115,7 +116,7 @@ export function useEditUser(): {
     };
     const client = context.app?.apolloProvider.defaultClient;
     try {
-      const response = await client.mutate({
+      const response: TokenType = await client.mutate({
         mutation: ADD_PHOTO,
         variables: payload,
       });

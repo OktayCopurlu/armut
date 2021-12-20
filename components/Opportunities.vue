@@ -15,10 +15,9 @@
           <strong>{{ category.city }}</strong>
         </div>
       </section>
-      <nuxt-link :to="`/offer/${category.category.replace(/ /g, '_')}`">
-        <Button :value="category.category" :text="'Rezervation'"
+      <nuxt-link :to="`/give_offer/${category.category.replace(/ /g, '_')}`">
+        <Button :value="category.category" :text="'Give Offer'"
       /></nuxt-link>
-      <!-- <button :value="category.category">Rezervation</button> -->
     </div>
   </div>
 </template>
@@ -32,18 +31,18 @@ import {
 } from "@nuxtjs/composition-api";
 import { userInfo } from "~/store/index";
 import { useOpportunity } from "~/store/opportunity";
+import { Categories, OpportunityType } from "~/store/types";
+
 export default defineComponent({
   setup() {
-    const state: any = reactive({
+    const state: OpportunityType = reactive({
       categories: [],
       userCategory: computed(() => userInfo.category),
     });
 
     const { getOpportunity } = useOpportunity();
     const result = getOpportunity(state.userCategory);
-    result
-      .then((category) => (state.categories = category))
-      .then(() => console.log(state.categories));
+    result.then((category) => (state.categories = category as Categories[]));
 
     return {
       ...toRefs(state),

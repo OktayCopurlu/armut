@@ -1,5 +1,5 @@
 import { reactive } from "@nuxtjs/composition-api";
-import { UserInfoType } from "./types";
+import { StateType, UserInfoType } from "./types";
 
 export const userInfo: UserInfoType = reactive({
   fullname: "",
@@ -14,11 +14,10 @@ export const userInfo: UserInfoType = reactive({
   category: "",
 });
 
-interface StateType {
-  categories: string[];
-  mainCategory: Object[];
-}
+
 export const states: StateType = reactive({
   categories: [],
   mainCategory: [],
+  cantons: [],
+  cities: [],
 });

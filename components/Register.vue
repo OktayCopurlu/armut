@@ -10,23 +10,19 @@
           required
         /><label class="label" for="search">What service do you provide?</label>
       </div>
-      <div
-        v-if="provider"
-        class="categories"
-        v-for="ctgry in searchedProducts"
-        :key="ctgry"
-      >
-        <input
-          v-if="isShowing"
-          type="radio"
-          v-model="category"
-          :value="ctgry"
-          :id="ctgry"
-          name="categories"
-        />
-        <label v-if="isShowing" :for="ctgry">{{ ctgry }}</label>
+      <div v-if="provider">
+        <div class="categories" v-for="ctgry in searchedProducts" :key="ctgry">
+          <input
+            v-if="isShowing"
+            type="radio"
+            v-model="category"
+            :value="ctgry"
+            :id="ctgry"
+            name="categories"
+          />
+          <label v-if="isShowing" :for="ctgry">{{ ctgry }}</label>
+        </div>
       </div>
-
       <div class="radio-buttons" v-if="provider">
         <input
           v-model="status"
@@ -152,7 +148,7 @@ export default defineComponent({
       state.category = "";
       state.service = "";
     };
-const provider = props.provider
+    const provider = props.provider;
     const submit = (): void => {
       register(
         state.fullname,

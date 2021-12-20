@@ -1,3 +1,5 @@
+import { ComputedRef } from "@nuxtjs/composition-api";
+
 export interface LoginFormType {
   password: string;
   email: string;
@@ -69,10 +71,69 @@ export type PhotoType = (
   photo: string | ArrayBuffer
 ) => Promise<void>;
 
-export interface OfferFormType {
+export interface CantonType {
+  _id: string;
+  canton: string;
+}
+export interface AskServiceFormType {
   city: string;
   canton: string;
   more_info: string;
   date: string;
   category: string;
+  cantons: CantonType[];
+  cities: Object[];
 }
+
+export interface Categories {
+  canton: string;
+  _id: string;
+  city: string;
+  more_info: string;
+  category: string;
+}
+export interface OpportunityType {
+  categories: Categories[];
+  userCategory: string;
+}
+
+export interface AllCategoryType {
+  data: {
+    getAllCategories: {
+      categories: string[];
+    }[];
+  };
+}
+export interface StateType {
+  categories: string[];
+  mainCategory: ServiceCategoryType[];
+  cantons: Object[];
+  cities: Object[];
+}
+
+export interface ServiceCategoryType {
+  data: {
+    getServiceCategory: {
+      _id: string;
+      mainCategory: string;
+      category: string;
+      users: string[];
+    };
+  };
+}
+
+export interface TokenType {
+  data: {
+    editUser: {
+      token: string;
+    };
+    addPhoto: {
+      token: string;
+    };
+  };
+}
+
+export interface CategoryType {
+  categories: any[];
+}
+;

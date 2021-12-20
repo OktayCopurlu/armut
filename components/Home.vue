@@ -9,7 +9,7 @@
           placeholder="What serve are you searching?"
           v-model="search"
         />
-        <button>Search</button>
+        <Button text="Search" />
       </form>
     </section>
     <section class="middle-sections">
@@ -79,12 +79,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$media-desktop: "only screen and (max-width : 1024px)";
-$media-tablet: "only screen and (max-width : 768px)";
-$media-mobile: "only screen and (max-width : 600px)";
-$media-mobile-sm: "only screen and (max-width : 480px)";
+@import "../static/index";
+
 .container {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   .main-section {
     display: flex;
     flex-direction: column;
@@ -97,18 +94,18 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
     background-size: cover;
     background-color: gray;
     form {
-      * {
+      button {
+        @include green-button(1.3rem);
+        width: auto;
+        padding: 1rem;
+      }
+      input {
+        @include login-register-input;
         padding: 1rem;
         border: none;
         font-size: 1.3rem;
-        color: black;
-        opacity: 1;
-      }
-      input {
         width: 20rem;
-        &:focus {
-          outline: none;
-        }
+      
       }
     }
   }

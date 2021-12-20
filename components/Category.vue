@@ -13,10 +13,9 @@
         </p>
         <!-- <p>4.5 (2.000.000 comments)</p> -->
       </section>
-      <nuxt-link :to="`/offer/${category.category.replace(/ /g, '_')}`">
+      <nuxt-link :to="`/ask_serve/${category.category.replace(/ /g, '_')}`">
         <Button :value="category.category" :text="'Rezervation'"
       /></nuxt-link>
-      <!-- <button :value="category.category">Rezervation</button> -->
     </div>
   </div>
 </template>
@@ -31,11 +30,14 @@ import {
 } from "@nuxtjs/composition-api";
 import { states } from "~/store";
 import { useCategory } from "~/store/pageCategories";
+import { CategoryType } from "~/store/types";
+
 export default defineComponent({
   setup() {
-    const state: any = reactive({
+    const state: CategoryType = reactive({
       categories: computed(() => states.mainCategory),
     });
+
     const route = useRoute();
     const page = route.value.path.substring(1);
     const { getCategory } = useCategory();

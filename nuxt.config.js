@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "armut2",
+    title: "armut",
     htmlAttrs: {
       lang: "en",
     },
@@ -16,7 +16,7 @@ export default {
     ],
     link: [{}],
   },
-
+  generate: { fallback: "404.html" },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 

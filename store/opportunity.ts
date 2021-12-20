@@ -1,11 +1,10 @@
-import { ComputedRef, useContext } from "@nuxtjs/composition-api";
-import { states } from "./index";
-import { GET_CATEGORY, GET_OPPORTUNITY } from "./request";
-
+import { useContext } from "@nuxtjs/composition-api";
+import { GET_OPPORTUNITY } from "./request";
+import { Categories } from "./types";
 export function useOpportunity(): {
-  getOpportunity(category: string): Promise<Object[]>;
+  getOpportunity(category: string): Promise<Object>;
 } {
-  const getOpportunity = async (category: string) => {
+  const getOpportunity = async (category: string): Promise<Object> => {
     const context = useContext();
     const client = context.app?.apolloProvider.defaultClient;
 
@@ -17,7 +16,11 @@ export function useOpportunity(): {
       variables: payload,
     });
 
-    const data = await result.data.getOpportunity;
+    const data: {
+      data: {
+        getOpportunity: Categories;
+      };
+    } = await result.data.getOpportunity;
     return data;
   };
 

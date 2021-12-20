@@ -61,3 +61,22 @@ $tiny-shadow: 1px 1px 3px $gray;
   transform: translateY(-60%);
   transition: $transition;
 }
+
+@mixin opportunities_link_style {
+  li {
+    list-style: none;
+    padding: 1rem;
+    background-color: $green;
+    display: flex;
+    justify-content: flex-end;
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      &:hover {
+        color: darken(white, 20%);
+      }
+    }
+  }
+}

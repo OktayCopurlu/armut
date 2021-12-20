@@ -1,6 +1,7 @@
-import { ComputedRef, useContext } from "@nuxtjs/composition-api";
+import { useContext } from "@nuxtjs/composition-api";
 import { states } from "./index";
 import { GET_CATEGORY } from "./request";
+import { ServiceCategoryType } from "./types";
 
 export function useCategory(): {
   getCategory(page: string): Promise<void>;
@@ -17,7 +18,7 @@ export function useCategory(): {
       variables: payload,
     });
 
-    const data = await result.data.getServiceCategory;
+    const data: ServiceCategoryType[] = await result.data.getServiceCategory;
     states.mainCategory = data;
   };
 

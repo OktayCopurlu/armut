@@ -1,8 +1,6 @@
 <template>
   <div>
-    <li v-if="provider">
-      <nuxt-link to="/opportunities">Opportunities</nuxt-link>
-    </li>
+
     <div class="main">
       <div class="photo">
         <input
@@ -60,7 +58,7 @@
           required
           :default-value="tel"
         />
-        <Button :text="'Save'" />
+        <Button text="Save" />
       </form>
     </div>
   </div>
@@ -88,10 +86,11 @@ export default defineComponent({
       userPhoto: userInfo.photo,
       provider: userInfo.provider,
     });
-    console.log(state.provider);
     const { editUser, addPhoto } = useEditUser();
 
-    const getFile = (e: any) => {
+    const getFile = (e: {
+      target: { files: { [s: string]: unknown } | ArrayLike<unknown> };
+    }) => {
       if (e.target.files) {
         Object.values(e.target.files).forEach((element: any) => {
           const photoRef = ref(storage, `images/${element.name}`);
@@ -135,22 +134,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../static/index";
-li {
-  list-style: none;
-  padding: 1rem;
-  background-color: $green;
-  display: flex;
-  justify-content: flex-end;
-  a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    &:hover {
-      color: darken(white, 20%);
-    }
-  }
-}
+
 
 .main {
   border-radius: 5px;

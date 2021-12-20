@@ -1,9 +1,9 @@
 import { useContext } from "@nuxtjs/composition-api";
 import { userInfo } from "./index";
-import { CREATE_OFFER } from "./request";
+import { CREATE_ASKED_SERVICE } from "./request";
 
-export function useOffer(): {
-  createOffer(
+export function useAsked_service(): {
+  createAsked_service(
     canton: string,
     city: string,
     date: string,
@@ -13,7 +13,7 @@ export function useOffer(): {
 } {
   const context = useContext();
   const client = context.app?.apolloProvider.defaultClient;
-  const createOffer = async (
+  const createAsked_service = async (
     canton: string,
     city: string,
     date: string,
@@ -26,13 +26,12 @@ export function useOffer(): {
       date,
       more_info,
       category,
-      offeredUser: userInfo._id,
+      asked_service_user: userInfo._id,
     };
-    console.log(payload);
-    const response = await client.mutate({
-      mutation: CREATE_OFFER,
+    await client.mutate({
+      mutation: CREATE_ASKED_SERVICE,
       variables: payload,
     });
   };
-  return { createOffer };
+  return { createAsked_service };
 }

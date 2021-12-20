@@ -10,9 +10,7 @@ import { reactive, toRefs } from "@nuxtjs/composition-api";
 export default {
   props: ["value", "text"],
   setup() {
-    const state = reactive({
-      count: 0,
-    });
+    const state = reactive({});
 
     return {
       ...toRefs(state),

@@ -1,5 +1,5 @@
 <template>
-  <Register :provider="false" :button_text="'Register for Getting Service'" />
+  <Register :provider="false" button_text="Register for Getting Service" />
 </template>
 
 <script lang='ts'>

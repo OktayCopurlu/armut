@@ -1,5 +1,5 @@
 <template>
-  <Offer />
+  <GiveOffer />
 </template>
 
 <script lang='ts'>

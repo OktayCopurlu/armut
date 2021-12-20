@@ -86,24 +86,24 @@ export const GET_CATEGORY = gql`
   }
 `;
 
-export const CREATE_OFFER = gql`
+export const CREATE_ASKED_SERVICE = gql`
   mutation (
     $canton: String!
     $city: String!
     $date: String!
     $more_info: String!
     $category: String!
-    $offeredUser: ID!
+    $asked_service_user: ID!
   ) {
-    createOffer(
+    createAsked_service(
       canton: $canton
       city: $city
       date: $date
       more_info: $more_info
       category: $category
-      offeredUser: $offeredUser
+      asked_service_user: $asked_service_user
     ) {
-      offeredUser
+      asked_service_user
     }
   }
 `;
@@ -116,7 +116,70 @@ export const GET_OPPORTUNITY = gql`
       date
       more_info
       category
-      offeredUser
+      asked_service_user
     }
   }
+`;
+export const GET_CANTONS = gql`
+  query {
+    getCantons {
+      canton
+    }
+  }
+`;
+export const GET_CITIES = gql`
+  query ($canton: String!) {
+    getCities(canton: $canton) {
+      _id
+      canton
+      gemainde
+    }
+  }
+`;
+export const SET_CANTON = gql`
+  mutation ($canton: String!, $gemainde: [String]!) {
+    setUpCanton(canton: $canton, gemainde: $gemainde) {
+      canton
+      gemainde
+    }
+  }
+`;
+
+export const CREATE_MESSAGE = gql`
+  mutation (
+    $senderName: String!
+    $senderEmail: String!
+    $senderID: ID!
+    $receviedID: ID!
+    $receiverName: String!
+    $receiverEmail: String!
+    $message: String!
+  ) {
+    createMessage(
+      senderName: $senderName
+      senderEmail: $senderEmail
+      senderID: $senderID
+      receviedID: $receviedID
+      receiverName: $receiverName
+      receiverEmail: $receiverEmail
+      message: $message
+    ) {
+      _id
+    }
+  }
+`;
+
+export const GET_USER_MESSAGES = gql`
+query(userID: ID!){
+  getUserMessages(userID: $userID){
+    _id
+    senderID
+    senderEmail
+    senderName
+    receiverName
+    receiverEmail
+    receiverID
+    message
+  }
+}
 `;

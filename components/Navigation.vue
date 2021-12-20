@@ -7,7 +7,6 @@
     <label for="toggle" class="close-label"
       ><i class="fas fa-window-close"></i><span> MENU</span></label
     >
-
     <ul>
       <li>
         <nuxt-link to="/">Armut</nuxt-link>
@@ -40,12 +39,12 @@
         <nuxt-link v-if="!isLogin" to="/register">Register</nuxt-link>
       </li>
       <li class="photo" v-if="photo">
-        <nuxt-link v-if="photo" to="/my-account"
+        <nuxt-link v-if="photo" to="/user_page"
           ><img :src="photo" alt="user photo"
         /></nuxt-link>
       </li>
       <li v-else-if="isLogin">
-        <nuxt-link to="/my-account">My Account</nuxt-link>
+        <nuxt-link to="/user_page">My Account</nuxt-link>
       </li>
 
       <li>
@@ -61,13 +60,17 @@ import { userInfo } from "~/store";
 import { useLogin } from "~/store/user";
 import {
   computed,
+  ComputedRef,
   defineComponent,
   reactive,
   toRefs,
 } from "@nuxtjs/composition-api";
 export default defineComponent({
   setup() {
-    const state: any = reactive({
+    const state: {
+      isLogin: boolean | ComputedRef<boolean>;
+      photo: string | ComputedRef<boolean>;
+    } = reactive({
       isLogin: false,
       photo: "",
     });

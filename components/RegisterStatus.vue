@@ -3,7 +3,7 @@
     <h2>Select register status</h2>
     <nav>
       <nuxt-link to="/register-provider">
-        <Button  text='Register as a Service Provider' />
+        <Button text="Register as a Service Provider" />
       </nuxt-link>
 
       <nuxt-link to="/register-for-service">
@@ -18,13 +18,17 @@ import { userInfo } from "~/store";
 import { useLogin } from "~/store/user";
 import {
   computed,
+  ComputedRef,
   defineComponent,
   reactive,
   toRefs,
 } from "@nuxtjs/composition-api";
 export default defineComponent({
   setup() {
-    const state: any = reactive({
+    const state: {
+      isLogin: ComputedRef<boolean> | boolean;
+      photo: ComputedRef<string> | string;
+    } = reactive({
       isLogin: false,
       photo: "",
     });
