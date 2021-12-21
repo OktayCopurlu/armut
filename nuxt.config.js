@@ -34,10 +34,12 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/apollo"],
+  modules: ["@nuxtjs/apollo", "lodash"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ["lodash-es","@types/lodash"],
+  },
   apollo: {
     clientConfigs: {
       default: {

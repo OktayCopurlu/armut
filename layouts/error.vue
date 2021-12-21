@@ -10,8 +10,8 @@ import {
   toRefs,
   useRouter,
 } from "@nuxtjs/composition-api";
-import { initAuth } from "../store/user";
-import protectedRouter from "~/auth";
+import { initAuth } from "../store/auth";
+import protectedRouter from "~/protectRouter";
 
 export default defineComponent({
   setup() {

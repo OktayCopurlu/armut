@@ -2,28 +2,21 @@
   <div class="main">
     <form @submit.prevent="submit">
       <div class="floating-form">
-        <input
-          type="number"
-          min="0"
-          max="10000"
-          step="1 CHF"
-          required
-          v-model="price"
-        />
+        <input type="number" min="0" max="10000" step="1 CHF" v-model="price" />
         <label class="label" for="canton">Price</label>
       </div>
 
       <div class="floating-form">
         <textarea
-          v-model="more_info"
+          v-model="message"
           type="text"
           id="more-info"
           name="more-info"
           required
         /><label class="label" for="more-info">More information</label>
       </div>
-      <h2>{{ price }} CHF</h2>
-      <p>{{ more_info }}</p>
+      <h2 v-if="price.length > 0">{{ price }} CHF</h2>
+      <p>{{ message }}</p>
       <Button text="Give Offer" />
     </form>
   </div>
@@ -31,25 +24,33 @@
 
 <script lang='ts'>
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
-import { useCategoryList } from "~/store/categoryList";
+import { messageState, currentUserInfo } from "~/store";
+import { useMessage } from "~/store/message";
+import { MessageType } from "~/store/types";
 
 export default defineComponent({
   setup() {
-    const state: { price: string; more_info: string } = reactive({
+    const state: MessageType = reactive({
       price: "",
-      more_info: "",
+      message: "",
+      senderID: currentUserInfo._id,
+      receiverID: messageState.receiverID,
     });
 
-    const { getAllCategoryList } = useCategoryList();
-    getAllCategoryList();
+    const { createMessage } = useMessage();
 
     const emptyForm = (): void => {
       state.price = "";
-      state.more_info = "";
+      state.message = "";
     };
 
     const submit = (): void => {
-      console.log(state.price, state.more_info);
+      createMessage(
+        state.price,
+        state.message,
+        state.senderID,
+        state.receiverID
+      );
       emptyForm();
     };
 

@@ -4,8 +4,8 @@
 
 <script lang='ts'>
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
-import { initAuth } from "../store/user";
-import protectedRouter from "~/auth";
+import { initAuth } from "../store/auth";
+import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
     const state = reactive({});

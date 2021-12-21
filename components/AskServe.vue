@@ -23,7 +23,7 @@
           defaultValue="Choose City"
           @change="selectCity"
         >
-         <option value=" ">Choose City</option>
+          <option value=" ">Choose City</option>
           <option v-for="city in cities" :key="city" :value="city">
             {{ city }}
           </option>
@@ -34,7 +34,7 @@
       </div>
       <div class="floating-form">
         <textarea
-          v-model="more_info"
+          v-model="message"
           type="text"
           id="more-info"
           name="more-info"
@@ -58,13 +58,13 @@ import {
 import { CantonType, AskServiceFormType } from "~/store/types";
 import { useAsked_service } from "~/store/createAsked_service";
 import { useCantons } from "~/store/canton";
-import { states } from "~/store";
+import { currentUserInfo, states } from "~/store";
 export default defineComponent({
   setup() {
     const state: AskServiceFormType = reactive({
       canton: "",
       city: "",
-      more_info: "",
+      message: "",
       date: "",
       category: "",
       cantons: computed(() => states.cantons as CantonType[]),
@@ -95,15 +95,21 @@ export default defineComponent({
     const emptyForm = (): void => {
       state.canton = "";
       state.city = "";
-      state.more_info = "";
+      state.message = "";
       state.date = "";
     };
+    const fullname = currentUserInfo.fullname;
+    const email = currentUserInfo.email;
+    const tel = currentUserInfo.tel;
     const submit = (): void => {
       createAsked_service(
+        fullname,
+        email,
+        tel,
         state.canton,
         state.city,
         state.date,
-        state.more_info,
+        state.message,
         state.category
       );
       emptyForm();

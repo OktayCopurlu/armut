@@ -62,13 +62,17 @@ $tiny-shadow: 1px 1px 3px $gray;
   transition: $transition;
 }
 
-@mixin opportunities_link_style {
+@mixin userpage_link_style {
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #416BA7;
+  }
   li {
     list-style: none;
     padding: 1rem;
-    background-color: $green;
-    display: flex;
-    justify-content: flex-end;
     a {
       color: white;
       text-decoration: none;

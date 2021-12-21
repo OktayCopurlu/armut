@@ -13,7 +13,7 @@ export interface UserPageType {
   photo: any;
 }
 
-export interface UserInfoType extends UserPageType {
+export interface currentUserInfoType extends UserPageType {
   token: string;
   isLogin: boolean;
   provider: boolean;
@@ -78,7 +78,7 @@ export interface CantonType {
 export interface AskServiceFormType {
   city: string;
   canton: string;
-  more_info: string;
+  message: string;
   date: string;
   category: string;
   cantons: CantonType[];
@@ -86,15 +86,21 @@ export interface AskServiceFormType {
 }
 
 export interface Categories {
+  fullname: string;
+  email: string;
+  tel: string;
+  asked_service_user: string;
   canton: string;
   _id: string;
   city: string;
-  more_info: string;
+  message: string;
   category: string;
 }
-export interface OpportunityType {
-  categories: Categories[];
+
+export interface Asked_serviceType {
+  asked_services: Categories[];
   userCategory: string;
+  modal: boolean;
 }
 
 export interface AllCategoryType {
@@ -136,4 +142,26 @@ export interface TokenType {
 export interface CategoryType {
   categories: any[];
 }
-;
+export interface MessageType {
+  _id?: string;
+  price: string;
+  message: string;
+  senderID: string;
+  receiverID: string;
+}
+export interface UserMessagesType extends MessageType {
+  messages: MessageType[];
+  users: string[];
+}
+export interface ClientUserInfoType {
+  photo: string;
+  messages: string[];
+  asked_service: string[];
+  given_service: string[];
+  category: string;
+  _id: string;
+  fullname: string;
+  email: string;
+  tel: string;
+  status: string;
+}

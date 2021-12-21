@@ -27,7 +27,7 @@
 <script lang='ts'>
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
 import { LoginFormType } from "~/store/types";
-import { useLogin } from "~/store/user";
+import { useLogin } from "~/store/auth";
 
 export default defineComponent({
   setup() {

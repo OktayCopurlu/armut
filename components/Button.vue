@@ -1,5 +1,8 @@
 <template>
-  <button>
+  <button v-if="!clickEvent" :value="asked_service_user">
+    {{ text }}
+  </button>
+  <button v-else @click="clickEvent" :value="asked_service_user">
     {{ text }}
   </button>
 </template>
@@ -8,7 +11,7 @@
 import { reactive, toRefs } from "@nuxtjs/composition-api";
 
 export default {
-  props: ["value", "text"],
+  props: ["clickEvent", "asked_service_user", "text"],
   setup() {
     const state = reactive({});
 

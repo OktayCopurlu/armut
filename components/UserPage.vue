@@ -71,20 +71,20 @@ import {
   toRefs,
   computed,
 } from "@nuxtjs/composition-api";
-import { userInfo } from "~/store/index";
+import { currentUserInfo } from "~/store/index";
 import { useEditUser } from "~/store/register";
 import storage from "../plugins/firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 export default defineComponent({
   setup() {
     const state = reactive({
-      _id: userInfo._id,
-      fullname: userInfo.fullname,
-      email: userInfo.email,
-      tel: userInfo.tel,
-      address: userInfo.address,
-      userPhoto: userInfo.photo,
-      provider: userInfo.provider,
+      _id: currentUserInfo._id,
+      fullname: currentUserInfo.fullname,
+      email: currentUserInfo.email,
+      tel: currentUserInfo.tel,
+      address: currentUserInfo.address,
+      userPhoto: currentUserInfo.photo,
+      provider: currentUserInfo.provider,
     });
     const { editUser, addPhoto } = useEditUser();
 

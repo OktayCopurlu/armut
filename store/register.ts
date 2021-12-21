@@ -8,7 +8,7 @@ import {
   PhotoType,
   TokenType,
 } from "./types";
-import { userInfo } from "./index";
+import { currentUserInfo } from "./index";
 
 export function useStartServe(): {
   register: SignUpPropsType;
@@ -48,15 +48,15 @@ export function useStartServe(): {
       await context.app.$apolloHelpers.onLogin(token, "_", "");
       if (token) {
         const user = verifyJWT(token);
-        userInfo.fullname = user.fullname;
-        userInfo.email = user.email;
-        userInfo._id = user._id;
-        userInfo.token = token;
-        userInfo.isLogin = true;
-        userInfo.category = user.category;
-        userInfo.provider = user.provider;
+        currentUserInfo.fullname = user.fullname;
+        currentUserInfo.email = user.email;
+        currentUserInfo._id = user._id;
+        currentUserInfo.token = token;
+        currentUserInfo.isLogin = true;
+        currentUserInfo.category = user.category;
+        currentUserInfo.provider = user.provider;
       }
-      if (userInfo.token) {
+      if (currentUserInfo.token) {
         await router.push("/my-account");
       }
     } catch (error) {
@@ -97,12 +97,12 @@ export function useEditUser(): {
       await context.app.$apolloHelpers.onLogin(token, "_", "");
       if (token) {
         const user = verifyJWT(token);
-        userInfo.fullname = user.fullname;
-        userInfo.email = user.email;
-        userInfo._id = user._id;
-        userInfo.provider = user.provider;
-        userInfo.token = token;
-        userInfo.isLogin = true;
+        currentUserInfo.fullname = user.fullname;
+        currentUserInfo.email = user.email;
+        currentUserInfo._id = user._id;
+        currentUserInfo.provider = user.provider;
+        currentUserInfo.token = token;
+        currentUserInfo.isLogin = true;
       }
     } catch (error) {
       console.error(error);
@@ -124,14 +124,14 @@ export function useEditUser(): {
       await context.app.$apolloHelpers.onLogin(token, "_", "");
       if (token) {
         const user = verifyJWT(token);
-        userInfo.fullname = user.fullname;
-        userInfo.email = user.email;
-        userInfo._id = user._id;
-        userInfo.address = user.address;
-        userInfo.tel = user.tel;
-        userInfo.token = token;
-        userInfo.isLogin = true;
-        userInfo.photo = user.photo;
+        currentUserInfo.fullname = user.fullname;
+        currentUserInfo.email = user.email;
+        currentUserInfo._id = user._id;
+        currentUserInfo.address = user.address;
+        currentUserInfo.tel = user.tel;
+        currentUserInfo.token = token;
+        currentUserInfo.isLogin = true;
+        currentUserInfo.photo = user.photo;
       }
     } catch (error) {
       console.error(error);

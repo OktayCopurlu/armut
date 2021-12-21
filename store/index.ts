@@ -1,7 +1,13 @@
 import { reactive } from "@nuxtjs/composition-api";
-import { StateType, UserInfoType } from "./types";
+import {
+  StateType,
+  currentUserInfoType,
+  ClientUserInfoType,
+  MessageType,
+  UserMessagesType,
+} from "./types";
 
-export const userInfo: UserInfoType = reactive({
+export const currentUserInfo: currentUserInfoType = reactive({
   fullname: "",
   email: "",
   _id: "",
@@ -14,10 +20,34 @@ export const userInfo: UserInfoType = reactive({
   category: "",
 });
 
-
 export const states: StateType = reactive({
   categories: [],
   mainCategory: [],
   cantons: [],
   cities: [],
+});
+
+export const messageState: UserMessagesType = reactive({
+  price: "",
+  message: "",
+  senderID: "",
+  receiverID: "",
+  messages: [],
+  users: [],
+});
+
+export const clientUserInfo: ClientUserInfoType = reactive({
+  _id: "",
+  fullname: "",
+  email: "",
+  tel: "",
+  status: "",
+  photo: "",
+  messages: [],
+  asked_service: [],
+  given_service: [],
+  category: "",
+});
+export const askedService = reactive({
+  asked_services: [],
 });

@@ -1,21 +1,17 @@
 <template>
   <div>
-    <li v-if="provider">
-      <nuxt-link to="/user_page/opportunities">Opportunities</nuxt-link>
-    </li>
+    <UserPageNavigation />
     <UserPage />
   </div>
 </template>
 
 <script lang='ts'>
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
-import { initAuth } from "../../store/user";
-import protectedRouter from "~/auth";
-import { userInfo } from "~/store";
+import { initAuth } from "../../store/auth";
+import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
-    const state: { provider: boolean } = reactive({
-      provider: userInfo.provider,
+    const state= reactive({
     });
 
     initAuth();
@@ -28,6 +24,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "~/static/index";
-@include opportunities_link_style;
 </style>

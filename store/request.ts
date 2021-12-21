@@ -88,18 +88,24 @@ export const GET_CATEGORY = gql`
 
 export const CREATE_ASKED_SERVICE = gql`
   mutation (
+    $fullname: String!
+    $email: String!
+    $tel: String!
     $canton: String!
     $city: String!
     $date: String!
-    $more_info: String!
+    $message: String!
     $category: String!
     $asked_service_user: ID!
   ) {
     createAsked_service(
+      fullname: $fullname
+      email: $email
+      tel: $tel
       canton: $canton
       city: $city
       date: $date
-      more_info: $more_info
+      message: $message
       category: $category
       asked_service_user: $asked_service_user
     ) {
@@ -107,16 +113,19 @@ export const CREATE_ASKED_SERVICE = gql`
     }
   }
 `;
-export const GET_OPPORTUNITY = gql`
+export const GET_ASKED_SERVICE = gql`
   query ($category: String!) {
-    getOpportunity(category: $category) {
+    getAsked_service(category: $category) {
       _id
       canton
       city
       date
-      more_info
+      message
       category
       asked_service_user
+      fullname
+      email
+      tel
     }
   }
 `;
@@ -147,22 +156,16 @@ export const SET_CANTON = gql`
 
 export const CREATE_MESSAGE = gql`
   mutation (
-    $senderName: String!
-    $senderEmail: String!
-    $senderID: ID!
-    $receviedID: ID!
-    $receiverName: String!
-    $receiverEmail: String!
+    $price: String
     $message: String!
+    $senderID: ID!
+    $receiverID: ID!
   ) {
     createMessage(
-      senderName: $senderName
-      senderEmail: $senderEmail
-      senderID: $senderID
-      receviedID: $receviedID
-      receiverName: $receiverName
-      receiverEmail: $receiverEmail
+      price: $price
       message: $message
+      senderID: $senderID
+      receiverID: $receiverID
     ) {
       _id
     }
@@ -170,16 +173,29 @@ export const CREATE_MESSAGE = gql`
 `;
 
 export const GET_USER_MESSAGES = gql`
-query(userID: ID!){
-  getUserMessages(userID: $userID){
-    _id
-    senderID
-    senderEmail
-    senderName
-    receiverName
-    receiverEmail
-    receiverID
-    message
+  query ($_id: ID!) {
+    getUserMessages(_id: $_id) {
+      _id
+      senderID
+      receiverID
+      message
+      price
+    }
   }
-}
+`;
+export const GET_USER_INFO = gql`
+  query ($_id: ID!) {
+    getUserInfo(_id: $_id) {
+      _id
+      fullname
+      email
+      tel
+      status
+      photo
+      messages
+      asked_service
+      given_service
+      category
+    }
+  }
 `;

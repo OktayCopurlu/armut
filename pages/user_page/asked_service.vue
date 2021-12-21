@@ -1,5 +1,8 @@
 <template>
-  <GiveOffer />
+  <div>
+    <UserPageNavigation />
+    <AskedService />
+  </div>
 </template>
 
 <script lang='ts'>
@@ -8,7 +11,9 @@ import { initAuth } from "../../store/auth";
 import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
-    const state = reactive({});
+    const state = reactive({
+    });
+
     initAuth();
     protectedRouter();
     return {
@@ -19,4 +24,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 </style>

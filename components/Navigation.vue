@@ -56,8 +56,8 @@
 </template>
 
 <script lang='ts'>
-import { userInfo } from "~/store";
-import { useLogin } from "~/store/user";
+import { currentUserInfo } from "~/store";
+import { useLogin } from "~/store/auth";
 import {
   computed,
   ComputedRef,
@@ -74,8 +74,8 @@ export default defineComponent({
       isLogin: false,
       photo: "",
     });
-    state.isLogin = computed(() => userInfo.isLogin);
-    state.photo = computed(() => userInfo.photo);
+    state.isLogin = computed(() => currentUserInfo.isLogin);
+    state.photo = computed(() => currentUserInfo.photo);
     const { logout } = useLogin();
     return {
       ...toRefs(state),
