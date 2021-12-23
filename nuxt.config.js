@@ -34,11 +34,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/apollo", "lodash"],
+  modules: ["@nuxtjs/apollo", "lodash", "nuxt-socket-io"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ["lodash-es","@types/lodash"],
+    transpile: ["lodash-es", "@types/lodash"],
   },
   apollo: {
     clientConfigs: {
@@ -46,5 +46,12 @@ export default {
         httpEndpoint: "http://localhost:4000/graphql",
       },
     },
+  },
+  io: {
+    sockets: [
+      {
+        url: "https://socket-io-worker.herokuapp.com/",
+      },
+    ],
   },
 };

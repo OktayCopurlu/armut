@@ -1,7 +1,7 @@
 <template>
   <div>
     <UserPageNavigation />
-    <Messages />
+    <Message />
   </div>
 </template>
 

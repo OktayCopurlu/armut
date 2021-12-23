@@ -3,7 +3,6 @@ import {
   StateType,
   currentUserInfoType,
   ClientUserInfoType,
-  MessageType,
   UserMessagesType,
 } from "./types";
 

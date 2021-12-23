@@ -1,5 +1,4 @@
 import { useContext } from "@nuxtjs/composition-api";
-import { messageState } from ".";
 import { CREATE_MESSAGE, GET_USER_MESSAGES } from "./request";
 
 export function useMessage(): {
@@ -38,5 +37,7 @@ export function useMessage(): {
 
     return response.data.getUserMessages;
   };
+
+
   return { createMessage, getUserMessages };
 }

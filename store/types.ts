@@ -152,6 +152,8 @@ export interface MessageType {
 export interface UserMessagesType extends MessageType {
   messages: MessageType[];
   users: string[];
+  display?: boolean;
+  apperance?: boolean;
 }
 export interface ClientUserInfoType {
   photo: string;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <UserPageNavigation />
-    <Messages />
+    <Message />
   </div>
 </template>
 
@@ -11,9 +11,7 @@ import { initAuth } from "~/store/auth";
 import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
-    const state = reactive({
-      
-    });
+    const state = reactive({});
 
     initAuth();
     protectedRouter();
@@ -25,5 +23,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
 </style>
+

@@ -59,17 +59,23 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, reactive, toRefs } from "@nuxtjs/composition-api";
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  useContext,
+} from "@nuxtjs/composition-api";
 
 export default defineComponent({
   setup() {
     const state = reactive({
       search: "",
+      messages: [],
     });
     const submit = () => {
-      console.log(state.search);
       state.search = "";
     };
+    
     return {
       ...toRefs(state),
       submit,
@@ -105,7 +111,6 @@ export default defineComponent({
         border: none;
         font-size: 1.3rem;
         width: 20rem;
-      
       }
     }
   }

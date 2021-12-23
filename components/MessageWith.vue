@@ -1,4 +1,4 @@
- <template >
+ <template>
   <li>
     <img
       :src="
@@ -12,52 +12,41 @@
       <h4>{{ user.fullname }}</h4>
       <a :href="`tel:${user.tel}`">{{ user.tel }}</a>
     </span>
+    <button class="back-button" @click="showList">
+      <i class="fas fa-chevron-circle-right"></i>
+    </button>
   </li>
 </template>
 
 <script lang='ts'>
-import { defineComponent, Ref, ref } from "@nuxtjs/composition-api";
-import { UserPageType } from "~/store/types";
-import { useUser } from "~/store/user";
+import { reactive, defineComponent } from "@nuxtjs/composition-api";
 
 export default defineComponent({
-  props: ["_id"],
-  setup(props: { _id: string }) {
-    const { getUserInfo } = useUser();
-    const user: Ref<UserPageType> = ref({}) as Ref<UserPageType>;
-    const data = getUserInfo(props._id);
-    data.then((dt: UserPageType) => {
-      user.value = dt;
-    });
-    return {
-      user,
-    };
+  props: ["user", "showList"],
+  setup() {
+    const state = reactive({});
   },
 });
 </script>
 
 <style lang="scss" scoped>
 @import "~/static/index";
+.back-button {
+  display: none;
+}
 li {
   list-style: none;
-  padding: 0.5rem;
-  padding-left: 1rem;
-  cursor: pointer;
+  padding: 1rem;
   display: flex;
-
-  &:hover {
-    background-color: rgb(216, 203, 203);
-  }
-
+  background-color: #c9c0c0;
   span {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     h4 {
-      margin: 0;
-      width: 15rem;
+      margin: 0 1rem;
     }
     a {
+      margin-left: 1rem;
       text-decoration: none;
       color: black;
     }
@@ -68,4 +57,18 @@ li {
     margin-right: 1rem;
   }
 }
+@media #{$media-tablet} {
+  li {
+    display: flex;
+    justify-content: space-between;
+  }
+  .back-button {
+    display: inline;
+    background-color: #c9c0c0;
+    max-height: 3rem;
+    border: none;
+    font-size: 1.5rem;
+  }
+}
 </style>
+
