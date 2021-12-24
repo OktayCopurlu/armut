@@ -94,12 +94,10 @@ export default defineComponent({
     });
     const showList = () => {
       state.apperance = true;
-      console.log(state.apperance);
     };
 
     const hideList = () => {
       state.apperance = false;
-      console.log(state.apperance);
     };
     const { createMessage, getUserMessages } = useMessage();
 

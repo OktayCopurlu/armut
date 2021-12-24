@@ -160,12 +160,14 @@ export const CREATE_MESSAGE = gql`
     $message: String!
     $senderID: ID!
     $receiverID: ID!
+    $asked_service_id: ID
   ) {
     createMessage(
       price: $price
       message: $message
       senderID: $senderID
       receiverID: $receiverID
+      asked_service_id: $asked_service_id
     ) {
       _id
     }
@@ -196,6 +198,7 @@ export const GET_USER_INFO = gql`
       asked_service
       given_service
       category
+      given_offer
     }
   }
 `;

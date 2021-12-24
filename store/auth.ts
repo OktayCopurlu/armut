@@ -3,11 +3,12 @@ import { useRouter, useContext } from "@nuxtjs/composition-api";
 import { LoginInfoType } from "./types";
 import { currentUserInfo } from "./index";
 import verifyJWT from "./verifyJWT";
+import { useUser } from "./user";
 
 export function initAuth(): void {
   const context = useContext();
   const token: string = context.app.$apolloHelpers.getToken("apollo-token");
-
+  const { getUserInfo } = useUser();
   if (token) {
     const user = verifyJWT(token);
     currentUserInfo.fullname = user.fullname;

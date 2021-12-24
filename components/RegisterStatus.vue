@@ -14,36 +14,20 @@
 </template>
 
 <script lang='ts'>
-import { currentUserInfo } from "~/store";
-import { useLogin } from "~/store/auth";
-import {
-  computed,
-  ComputedRef,
-  defineComponent,
-  reactive,
-  toRefs,
-} from "@nuxtjs/composition-api";
+import { defineComponent, reactive, toRefs } from "@nuxtjs/composition-api";
 export default defineComponent({
   setup() {
-    const state: {
-      isLogin: ComputedRef<boolean> | boolean;
-      photo: ComputedRef<string> | string;
-    } = reactive({
-      isLogin: false,
-      photo: "",
-    });
-    state.isLogin = computed(() => currentUserInfo.isLogin);
-    state.photo = computed(() => currentUserInfo.photo);
-    const { logout } = useLogin();
+    const state = reactive({});
+
     return {
       ...toRefs(state),
-      logout,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
+
 @import "../static/index";
 
 div {

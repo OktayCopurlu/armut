@@ -1,4 +1,4 @@
-import { reactive } from "@nuxtjs/composition-api";
+import { reactive, Ref, ref } from "@nuxtjs/composition-api";
 import {
   StateType,
   currentUserInfoType,
@@ -50,3 +50,5 @@ export const clientUserInfo: ClientUserInfoType = reactive({
 export const askedService = reactive({
   asked_services: [],
 });
+
+export const search: Ref<string> = ref("");

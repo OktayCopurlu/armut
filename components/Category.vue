@@ -1,23 +1,32 @@
 <template>
-  <div class="card-container">
-    <div class="card" v-for="category in categories" :key="category.category">
-      <img
-        src="https://cdn.armut.com/images/services/tr:w-278,h-168/00727-koltuk-yikama-temizleme.jpg"
-        alt="cleaning img"
-      />
-      <section>
-        <h4>{{ category.category }}</h4>
-        <p>
-          <i class="fas fa-user-friends"></i
-          >{{ category.users.length }} Professional
-        </p>
-        <!-- <p>4.5 (2.000.000 comments)</p> -->
-      </section>
-      <nuxt-link :to="`/ask_serve/${category.category.replace(/ /g, '_')}`">
-        <Button :value="category.category" :text="'Rezervation'"
-      /></nuxt-link>
+  <main class="container">
+    <Search />
+    <div class="card-container">
+      <div
+        class="card"
+        v-for="category in searchedCategories.length > 0
+          ? searchedCategories
+          : categories"
+        :key="category.category"
+      >
+        <img
+          src="https://cdn.armut.com/images/services/tr:w-278,h-168/00727-koltuk-yikama-temizleme.jpg"
+          alt="cleaning img"
+        />
+        <section>
+          <h4>{{ category.category }}</h4>
+          <p>
+            <i class="fas fa-user-friends"></i
+            >{{ category.users.length }} Professional
+          </p>
+          <!-- <p>4.5 (2.000.000 comments)</p> -->
+        </section>
+        <nuxt-link :to="`/ask_serve/${category.category.replace(/ /g, '_')}`">
+          <Button :value="category.category" :text="'Rezervation'"
+        /></nuxt-link>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang='ts'>
@@ -28,7 +37,8 @@ import {
   useRoute,
   computed,
 } from "@nuxtjs/composition-api";
-import { states } from "~/store";
+import _ from "lodash";
+import { search, states } from "~/store";
 import { useCategory } from "~/store/pageCategories";
 import { CategoryType } from "~/store/types";
 
@@ -42,8 +52,15 @@ export default defineComponent({
     const page = route.value.path.substring(1);
     const { getCategory } = useCategory();
     getCategory(page);
+
+    const searchedCategories = computed(() => {
+      return state.categories.filter((category) => {
+        return category.category.toLowerCase().indexOf(search.value.toLowerCase()) != -1;
+      });
+    });
     return {
       ...toRefs(state),
+      searchedCategories,
     };
   },
 });

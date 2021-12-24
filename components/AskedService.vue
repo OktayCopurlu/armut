@@ -20,13 +20,8 @@
           <strong>{{ category.city }}</strong>
         </div>
       </section>
-      <nuxt-link :to="`/give_offer/${category.category.replace(/ /g, '_')}`">
-        <Button
-          :clickEvent="handleInfo"
-          :asked_service_user="category.asked_service_user"
-          text="Give Offer"
-        />
-      </nuxt-link>
+      <AskedServiceButton :asked_service_user="category.asked_service_user" :id="category._id" />
+
     </div>
   </div>
 </template>
@@ -41,6 +36,7 @@ import {
 import { messageState, currentUserInfo, askedService } from "~/store/index";
 import { useAsked_service } from "~/store/asked_service";
 import { Asked_serviceType } from "~/store/types";
+import _ from "lodash";
 
 export default defineComponent({
   setup() {
@@ -54,9 +50,9 @@ export default defineComponent({
     };
     const { getAsked_service } = useAsked_service();
     getAsked_service(state.userCategory);
+
     const showProfile = () => {
       state.modal = !state.modal;
-      console.log(state.asked_services);
     };
     return {
       ...toRefs(state),
@@ -89,6 +85,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   box-shadow: $tiny-shadow;
+  min-width: 18rem;
   h3 {
     text-align: center;
     cursor: pointer;

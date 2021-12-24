@@ -130,7 +130,6 @@ export default defineComponent({
     getAllCategoryList();
 
     const search: Ref<string> = ref("");
-
     const searchedProducts = computed(() => {
       return state.categories.filter((category) => {
         return category.toLowerCase().indexOf(search.value.toLowerCase()) != -1;
@@ -149,6 +148,7 @@ export default defineComponent({
       state.service = "";
     };
     const provider = props.provider;
+
     const submit = (): void => {
       register(
         state.fullname,
@@ -160,8 +160,9 @@ export default defineComponent({
         state.tel,
         provider
       );
-
       emptyForm();
+
+
     };
     return {
       ...toRefs(state),

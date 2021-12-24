@@ -3,6 +3,7 @@ import { CREATE_MESSAGE, GET_USER_MESSAGES } from "./request";
 
 export function useMessage(): {
   createMessage(
+    asked_service_id: string,
     price: String,
     message: String,
     senderID: String,
@@ -13,6 +14,7 @@ export function useMessage(): {
   const context = useContext();
   const client = context.app?.apolloProvider.defaultClient;
   const createMessage = async (
+    asked_service_id: string,
     price: String,
     message: String,
     senderID: String,
@@ -23,6 +25,7 @@ export function useMessage(): {
       message,
       senderID,
       receiverID,
+      asked_service_id,
     };
     await client.mutate({
       mutation: CREATE_MESSAGE,
@@ -37,7 +40,6 @@ export function useMessage(): {
 
     return response.data.getUserMessages;
   };
-
 
   return { createMessage, getUserMessages };
 }

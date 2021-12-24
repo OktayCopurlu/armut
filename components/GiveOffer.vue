@@ -23,7 +23,12 @@
 </template>
 
 <script lang='ts'>
-import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
+import {
+  reactive,
+  defineComponent,
+  toRefs,
+  useRoute,
+} from "@nuxtjs/composition-api";
 import { messageState, currentUserInfo } from "~/store";
 import { useMessage } from "~/store/message";
 import { MessageType } from "~/store/types";
@@ -37,6 +42,8 @@ export default defineComponent({
       receiverID: messageState.receiverID,
     });
 
+    const route = useRoute();
+    const asked_service_id = route.value.params.id;
     const { createMessage } = useMessage();
 
     const emptyForm = (): void => {
@@ -46,6 +53,7 @@ export default defineComponent({
 
     const submit = (): void => {
       createMessage(
+        asked_service_id,
         state.price,
         state.message,
         state.senderID,

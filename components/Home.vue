@@ -1,17 +1,6 @@
 <template>
   <main class="container">
-    <section class="main-section">
-      <h1>Easily access the service you need, handle your pending work</h1>
-
-      <form @submit.prevent="submit">
-        <input
-          type="text"
-          placeholder="What serve are you searching?"
-          v-model="search"
-        />
-        <Button text="Search" />
-      </form>
-    </section>
+    <Search/>
     <section class="middle-sections">
       <div>
         <h3>Get Quality Service</h3>
@@ -63,14 +52,12 @@ import {
   defineComponent,
   reactive,
   toRefs,
-  useContext,
 } from "@nuxtjs/composition-api";
 
 export default defineComponent({
   setup() {
     const state = reactive({
       search: "",
-      messages: [],
     });
     const submit = () => {
       state.search = "";
