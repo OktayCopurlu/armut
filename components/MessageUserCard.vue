@@ -11,26 +11,41 @@
     <span>
       <h4>{{ user.fullname }}</h4>
       <a :href="`tel:${user.tel}`">{{ user.tel }}</a>
+      <!-- <strong>{{ price }} CHF</strong> -->
     </span>
   </li>
 </template>
 
 <script lang='ts'>
 import { defineComponent, Ref, ref } from "@nuxtjs/composition-api";
+import { currentUserInfo } from "~/store";
+import { useMessage } from "~/store/message";
 import { UserPageType } from "~/store/types";
 import { useUser } from "~/store/user";
 
 export default defineComponent({
   props: ["_id"],
-  setup(props: { _id: string }) {
+  setup(props: { _id: string; provider: boolean }) {
     const { getUserInfo } = useUser();
     const user: Ref<UserPageType> = ref({}) as Ref<UserPageType>;
-    const data = getUserInfo(props._id);
-    data.then((dt: UserPageType) => {
-      user.value = dt;
-    });
+    const offers: Ref<Object[]> = ref([]);
+    const { getOffer } = useMessage();
+    const setOffer = async () => {
+      const data = await getUserInfo(props._id);
+      user.value = data;
+      const bidderID = currentUserInfo.provider
+        ? currentUserInfo._id
+        : data._id;
+      offers.value = await getOffer(bidderID);
+      // offer.forEach((elm) => {
+      //   offers.value = elm
+      // });
+    };
+
+    setOffer();
     return {
       user,
+      offers,
     };
   },
 });
@@ -54,6 +69,11 @@ li {
     flex-direction: column;
     justify-content: space-between;
     h4 {
+      margin: 0;
+      width: 15rem;
+    }
+    strong {
+      color: red;
       margin: 0;
       width: 15rem;
     }

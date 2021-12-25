@@ -211,10 +211,47 @@ export const GET_USER_INFO = gql`
       status
       photo
       messages
+      provider
+      category
+      status
       asked_service
       given_service
-      category
       given_offer
+      given_offer_service
+    }
+  }
+`;
+export const CREATE_OFFER = gql`
+  mutation (
+    $price: String!
+    $clientID: ID!
+    $bidderID: ID!
+    $serviceID: ID!
+  ) {
+    createOffer(
+      price: $price
+      clientID: $clientID
+      bidderID: $bidderID
+      serviceID: $serviceID
+    ) {
+      _id
+      message
+      price
+      clientID
+      bidderID
+      serviceID
+    }
+  }
+`;
+export const GET_OFFER = gql`
+  query ($bidderID: ID!) {
+    getOffer(bidderID: $bidderID) {
+      _id
+      message
+      price
+      clientID
+      bidderID
+      serviceID
     }
   }
 `;

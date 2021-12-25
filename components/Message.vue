@@ -71,12 +71,7 @@ import { UserMessagesType, UserPageType } from "~/store/types";
 import _ from "lodash";
 import { useUser } from "~/store/user";
 import { VEmojiPicker } from "v-emoji-picker";
-export interface SomeType {
-  _id: string;
-  senderID: string;
-  message: string;
-}
-[];
+
 export default defineComponent({
   components: {
     VEmojiPicker,
@@ -100,6 +95,7 @@ export default defineComponent({
       state.apperance = false;
     };
     const { createMessage, getUserMessages } = useMessage();
+    const { getUserInfo } = useUser();
 
     const changeDisplay = () => {
       state.display = !state.display;
@@ -118,6 +114,23 @@ export default defineComponent({
     const routeID = route.value.params.id;
     state.receiverID = routeID;
     let filteredUsers: string[] = [];
+
+    const user: Ref<UserPageType> = ref({}) as Ref<UserPageType>;
+    // if (currentUserInfo.provider) {
+    //   const data = getUserInfo(currentUserInfo._id);
+    //   data.then((dt: UserPageType) => {
+    //     user.value = dt;
+    //     console.log(user);
+    //   });
+    // }
+
+    if (state.receiverID) {
+      const data = getUserInfo(state.receiverID);
+      data.then((dt: UserPageType) => {
+        user.value = dt;
+      });
+    }
+
     const getMessages = async (): Promise<void> => {
       try {
         const messages: any = await getUserMessages(state.senderID);
@@ -141,14 +154,7 @@ export default defineComponent({
         console.error(error);
       }
     };
-    const { getUserInfo } = useUser();
-    const user: Ref<UserPageType> = ref({}) as Ref<UserPageType>;
-    if (state.receiverID) {
-      const data = getUserInfo(state.receiverID);
-      data.then((dt: UserPageType) => {
-        user.value = dt;
-      });
-    }
+
     const emptyForm = (): void => {
       state.price = "";
       state.message = "";

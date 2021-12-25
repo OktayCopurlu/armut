@@ -32,7 +32,7 @@ export default defineComponent({
     const isOffered = ref(false);
     const changeText = async () => {
       const data = await getUserInfo(currentUserInfo._id);
-      if (_.includes(data.given_offer, props.id)) {
+      if (_.includes(data.given_offer_service, props.id)) {
         isOffered.value = true;
       } else {
         isOffered.value = false;

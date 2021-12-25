@@ -1,5 +1,10 @@
 import { useContext } from "@nuxtjs/composition-api";
-import { CREATE_MESSAGE, GET_USER_MESSAGES } from "./request";
+import {
+  CREATE_MESSAGE,
+  CREATE_OFFER,
+  GET_OFFER,
+  GET_USER_MESSAGES,
+} from "./request";
 
 export function useMessage(): {
   createMessage(
@@ -10,6 +15,21 @@ export function useMessage(): {
     receiverID: String
   ): Promise<void>;
   getUserMessages(userID: String): Promise<void>;
+  createOffer(
+    price: String,
+    clientID: String,
+    bidderID: String,
+    serviceID: String
+  ): Promise<void>;
+  getOffer(bidderID: String): Promise<
+    {
+      _id: String;
+      price: String;
+      clientID: String;
+      bidderID: String;
+      serviceID: String;
+    }[]
+  >;
 } {
   const context = useContext();
   const client = context.app?.apolloProvider.defaultClient;
@@ -50,6 +70,41 @@ export function useMessage(): {
 
     return response.data.getUserMessages;
   };
-
-  return { createMessage, getUserMessages };
+  const createOffer = async (
+    price: String,
+    clientID: String,
+    bidderID: String,
+    serviceID: String
+  ) => {
+    try {
+      const payload = {
+        price,
+        clientID,
+        bidderID,
+        serviceID,
+      };
+      await client.mutate({
+        mutation: CREATE_OFFER,
+        variables: payload,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const getOffer = async (bidderID: String) => {
+    try {
+      const payload = {
+        bidderID,
+      };
+      const response = await client.mutate({
+        mutation: GET_OFFER,
+        variables: payload,
+      });
+      const offer = response.data.getOffer;
+      return offer;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return { createMessage, getUserMessages, createOffer, getOffer };
 }

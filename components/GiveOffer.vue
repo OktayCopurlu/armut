@@ -44,7 +44,7 @@ export default defineComponent({
 
     const route = useRoute();
     const asked_service_id = route.value.params.id;
-    const { createMessage } = useMessage();
+    const { createMessage,createOffer } = useMessage();
 
     const emptyForm = (): void => {
       state.price = "";
@@ -58,6 +58,12 @@ export default defineComponent({
         state.message,
         state.senderID,
         state.receiverID
+      );
+      createOffer(
+        state.price,
+        state.receiverID,
+        state.senderID,
+        asked_service_id
       );
       emptyForm();
     };

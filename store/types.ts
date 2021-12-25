@@ -102,10 +102,9 @@ export interface Asked_serviceType {
   userCategory: string;
   modal: boolean;
 }
-export interface RezervationType{
+export interface RezervationType {
   rezervations: Categories[];
   _id: string;
-
 }
 export interface AllCategoryType {
   data: {
@@ -155,7 +154,7 @@ export interface MessageType {
 }
 export interface UserMessagesType extends MessageType {
   messages: MessageType[];
-  users: string[];
+  users: string[] | boolean[];
   display?: boolean;
   apperance?: boolean;
 }
