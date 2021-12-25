@@ -7,6 +7,9 @@
       <li v-if="provider">
         <nuxt-link to="/user_page/asked_service">Asked Service</nuxt-link>
       </li>
+      <li v-else>
+        <nuxt-link to="/user_page/rezervation">My Rezervation</nuxt-link>
+      </li>
       <li>
         <nuxt-link to="/user_page">Profile</nuxt-link>
       </li>

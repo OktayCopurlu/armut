@@ -171,10 +171,16 @@ export default defineComponent({
       const message = state.message;
       const senderID = state.senderID;
       const receiverID = state.receiverID;
-
+      const asked_service_id = "";
       socket.emit("send-message", { price, message, senderID, receiverID });
 
-      await createMessage(price, message, senderID, receiverID);
+      await createMessage(
+        asked_service_id,
+        price,
+        message,
+        senderID,
+        receiverID
+      );
       emptyForm();
       await getMessages();
     };

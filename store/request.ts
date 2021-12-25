@@ -185,6 +185,22 @@ export const GET_USER_MESSAGES = gql`
     }
   }
 `;
+export const GET_USER_REZERVATIONS = gql`
+  query ($_id: ID!) {
+    getUserRezervations(_id: $_id) {
+      _id
+      canton
+      city
+      date
+      message
+      category
+      asked_service_user
+      fullname
+      email
+      tel
+    }
+  }
+`;
 export const GET_USER_INFO = gql`
   query ($_id: ID!) {
     getUserInfo(_id: $_id) {

@@ -20,8 +20,10 @@
           <strong>{{ category.city }}</strong>
         </div>
       </section>
-      <AskedServiceButton :asked_service_user="category.asked_service_user" :id="category._id" />
-
+      <AskedServiceButton
+        :asked_service_user="category.asked_service_user"
+        :id="category._id"
+      />
     </div>
   </div>
 </template>
@@ -33,10 +35,9 @@ import {
   toRefs,
   computed,
 } from "@nuxtjs/composition-api";
-import { messageState, currentUserInfo, askedService } from "~/store/index";
+import { currentUserInfo, askedService } from "~/store/index";
 import { useAsked_service } from "~/store/asked_service";
 import { Asked_serviceType } from "~/store/types";
-import _ from "lodash";
 
 export default defineComponent({
   setup() {
@@ -45,9 +46,7 @@ export default defineComponent({
       userCategory: computed(() => currentUserInfo.category),
       modal: false,
     });
-    const handleInfo = (e: { target: { value: string } }) => {
-      messageState.receiverID = e.target.value;
-    };
+
     const { getAsked_service } = useAsked_service();
     getAsked_service(state.userCategory);
 
@@ -56,7 +55,6 @@ export default defineComponent({
     };
     return {
       ...toRefs(state),
-      handleInfo,
       showProfile,
     };
   },

@@ -20,13 +20,23 @@ export function useMessage(): {
     senderID: String,
     receiverID: String
   ) => {
-    const payload = {
-      price,
-      message,
-      senderID,
-      receiverID,
-      asked_service_id,
-    };
+    let payload;
+    if (asked_service_id !== "") {
+      payload = {
+        price,
+        message,
+        senderID,
+        receiverID,
+        asked_service_id,
+      };
+    } else {
+      payload = {
+        price,
+        message,
+        senderID,
+        receiverID,
+      };
+    }
     await client.mutate({
       mutation: CREATE_MESSAGE,
       variables: payload,
