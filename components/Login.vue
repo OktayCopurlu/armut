@@ -19,6 +19,9 @@
           v-model="password"
         /><label class="label" for="password">Password</label>
       </div>
+      <div class="forgot-password">
+        <nuxt-link to="/forgot_password">Forgot Password</nuxt-link>
+      </div>
       <Button text="Login" />
     </form>
   </div>
@@ -67,7 +70,11 @@ export default defineComponent({
   * {
     font-size: 1rem;
   }
-
+  .forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.4rem;
+  }
   .floating-form {
     position: relative;
   }

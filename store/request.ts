@@ -223,12 +223,7 @@ export const GET_USER_INFO = gql`
   }
 `;
 export const CREATE_OFFER = gql`
-  mutation (
-    $price: String!
-    $clientID: ID!
-    $bidderID: ID!
-    $serviceID: ID!
-  ) {
+  mutation ($price: String!, $clientID: ID!, $bidderID: ID!, $serviceID: ID!) {
     createOffer(
       price: $price
       clientID: $clientID
@@ -278,6 +273,32 @@ export const GET_OFFER_MESSAGES = gql`
       receiverID
       message
       price
+    }
+  }
+`;
+
+export const FORGOT_PASSWORD = gql`
+  mutation ($email: String!) {
+    forgotPassword(email: $email) {
+      token
+    }
+  }
+`;
+
+export const RESET_PASSWORD = gql`
+  mutation (
+    $email: String!
+    $RESET_PASSWORD_KEY: String!
+    $token: String!
+    $password: String!
+  ) {
+    resetPassword(
+      email: $email
+      RESET_PASSWORD_KEY: $RESET_PASSWORD_KEY
+      token: $token
+      password: $password
+    ) {
+      token
     }
   }
 `;
