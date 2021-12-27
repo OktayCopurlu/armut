@@ -3,6 +3,8 @@ import {
   CREATE_MESSAGE,
   CREATE_OFFER,
   GET_OFFER,
+  GET_OFFER_MESSAGES,
+  GET_REZERVATIONS_OFFERS,
   GET_USER_MESSAGES,
 } from "./request";
 
@@ -15,6 +17,7 @@ export function useMessage(): {
     receiverID: String
   ): Promise<void>;
   getUserMessages(userID: String): Promise<void>;
+  getOfferMessages(_id: String): Promise<Object[]>;
   createOffer(
     price: String,
     clientID: String,
@@ -30,6 +33,7 @@ export function useMessage(): {
       serviceID: String;
     }[]
   >;
+  getRezervationsOffers(_id: String): Promise<Object[]>;
 } {
   const context = useContext();
   const client = context.app?.apolloProvider.defaultClient;
@@ -106,5 +110,29 @@ export function useMessage(): {
       console.error(error);
     }
   };
-  return { createMessage, getUserMessages, createOffer, getOffer };
+  const getRezervationsOffers = async (_id: String) => {
+    const response = await client.mutate({
+      mutation: GET_REZERVATIONS_OFFERS,
+      variables: { _id },
+    });
+    const offers = await response.data.getRezervationsOffers;
+    return offers;
+  };
+  const getOfferMessages = async (_id: String) => {
+    const response = await client.mutate({
+      mutation: GET_OFFER_MESSAGES,
+      variables: { _id },
+    });
+
+    return response.data.getOfferMessages;
+  };
+
+  return {
+    createMessage,
+    getUserMessages,
+    createOffer,
+    getOffer,
+    getRezervationsOffers,
+    getOfferMessages,
+  };
 }

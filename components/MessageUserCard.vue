@@ -41,7 +41,6 @@ export default defineComponent({
       //   offers.value = elm
       // });
     };
-
     setOffer();
     return {
       user,

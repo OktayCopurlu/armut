@@ -111,19 +111,35 @@ export default defineComponent({
     };
 
     const route = useRoute();
-    const routeID = route.value.params.id;
+    const routeID = route.value.params.slug;
     state.receiverID = routeID;
+    const rezervationID = route.value.params.id;
+
     let filteredUsers: string[] = [];
 
-    const user: Ref<UserPageType> = ref({}) as Ref<UserPageType>;
-    // if (currentUserInfo.provider) {
-    //   const data = getUserInfo(currentUserInfo._id);
-    //   data.then((dt: UserPageType) => {
-    //     user.value = dt;
-    //     console.log(user);
-    //   });
-    // }
+    const user = ref({});
+    if (currentUserInfo.provider) {
+      const data = getUserInfo(currentUserInfo._id);
+      data.then((dt: UserPageType) => {
+        user.value = dt;
+      });
+    }
 
+    const offers: Ref<
+      {
+        _id: String;
+        price: String;
+        clientID: String;
+        bidderID: String;
+        serviceID: String;
+      }[]
+    > = ref([]);
+    const { getOffer } = useMessage();
+    const setOffer = async () => {
+      offers.value = await getOffer(currentUserInfo._id);
+    };
+
+    setOffer();
     if (state.receiverID) {
       const data = getUserInfo(state.receiverID);
       data.then((dt: UserPageType) => {
@@ -168,7 +184,6 @@ export default defineComponent({
     });
 
     const socket = io.connect();
-
     socket.on("receive-message", async (message: any) => {
       state.messages.push(message);
     });
@@ -177,9 +192,15 @@ export default defineComponent({
       const message = state.message;
       const senderID = state.senderID;
       const receiverID = state.receiverID;
-      const asked_service_id = "";
-      socket.emit("send-message", { price, message, senderID, receiverID });
-
+      const asked_service_id = rezervationID;
+      socket.emit("send-message", {
+        price,
+        message,
+        senderID,
+        receiverID,
+        rezervationID,
+      });
+      console.log(asked_service_id);
       await createMessage(
         asked_service_id,
         price,
@@ -199,6 +220,7 @@ export default defineComponent({
       showList,
       hideList,
       user,
+      offers,
     };
   },
 });

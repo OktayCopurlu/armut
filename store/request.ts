@@ -198,6 +198,7 @@ export const GET_USER_REZERVATIONS = gql`
       fullname
       email
       tel
+      offer
     }
   }
 `;
@@ -252,6 +253,31 @@ export const GET_OFFER = gql`
       clientID
       bidderID
       serviceID
+    }
+  }
+`;
+
+export const GET_REZERVATIONS_OFFERS = gql`
+  query ($_id: ID!) {
+    getRezervationsOffers(_id: $_id) {
+      _id
+      message
+      price
+      clientID
+      bidderID
+      serviceID
+    }
+  }
+`;
+
+export const GET_OFFER_MESSAGES = gql`
+  query ($_id: ID!) {
+    getOfferMessages(_id: $_id) {
+      _id
+      senderID
+      receiverID
+      message
+      price
     }
   }
 `;

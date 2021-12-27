@@ -52,3 +52,4 @@ export const askedService = reactive({
 });
 
 export const search: Ref<string> = ref("");
+export const rezervationsID: Ref<string> = ref("");
