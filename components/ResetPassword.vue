@@ -54,7 +54,12 @@ import {
 import { useForgotPassword } from "~/store/resetPassword";
 export default defineComponent({
   setup() {
-    const state = reactive({
+    const state: {
+      email: string;
+      password: string;
+      confirm_password: string;
+      isConfirm: boolean;
+    } = reactive({
       email: "",
       password: "",
       confirm_password: "",

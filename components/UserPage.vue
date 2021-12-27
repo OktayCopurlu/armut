@@ -99,7 +99,7 @@ export default defineComponent({
             "state_changed",
             (snapshot) => {},
             (error) => {
-              console.log(error);
+              console.error(error);
             },
             () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {

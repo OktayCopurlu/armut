@@ -47,7 +47,6 @@ export function useForgotPassword(): {
       });
       const result: { data: { resetPassword: { token: string } } } =
         response.data.resetPassword.token;
-      console.log(result);
       return result;
     } catch (error) {
       console.error(error);

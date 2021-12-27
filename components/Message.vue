@@ -200,7 +200,6 @@ export default defineComponent({
         receiverID,
         rezervationID,
       });
-      console.log(asked_service_id);
       await createMessage(
         asked_service_id,
         price,

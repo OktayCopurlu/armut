@@ -32,7 +32,7 @@ import {
 import { useForgotPassword } from "~/store/resetPassword";
 export default defineComponent({
   setup() {
-    const state = reactive({
+    const state: { email: string } = reactive({
       email: "",
     });
     const isEmailValid: Ref<boolean | null> = ref(null);
