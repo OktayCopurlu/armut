@@ -11,8 +11,7 @@ import { initAuth } from "~/store/auth";
 import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
-    const state= reactive({
-    });
+    const state = reactive({});
 
     initAuth();
     protectedRouter();
@@ -20,9 +19,13 @@ export default defineComponent({
       ...toRefs(state),
     };
   },
+  head() {
+    return {
+      title: "Messages",
+    };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
-
 </style>

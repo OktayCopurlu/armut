@@ -11,13 +11,17 @@ import { initAuth } from "../../store/auth";
 import protectedRouter from "~/protectRouter";
 export default defineComponent({
   setup() {
-    const state= reactive({
-    });
+    const state = reactive({});
 
     initAuth();
     protectedRouter();
     return {
       ...toRefs(state),
+    };
+  },
+  head() {
+    return {
+      title: "User Page",
     };
   },
 });

@@ -1,5 +1,5 @@
 <template>
-    <Category />
+  <Category />
 </template>
 
 <script lang='ts'>
@@ -13,6 +13,11 @@ export default defineComponent({
     protectedRouter();
     return {
       ...toRefs(state),
+    };
+  },
+  head() {
+    return {
+      title: "Cleaning",
     };
   },
 });

@@ -17,6 +17,10 @@ export default defineComponent({
     return {
       ...toRefs(state),
     };
+  },  head() {
+    return {
+      title: "Rezervation",
+    };
   },
 });
 </script>

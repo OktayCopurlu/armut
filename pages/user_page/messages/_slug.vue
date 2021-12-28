@@ -1,7 +1,7 @@
 <template>
   <div>
     <UserPageNavigation />
-    <Message/>
+    <Message />
   </div>
 </template>
 
@@ -25,6 +25,11 @@ export default defineComponent({
     protectedRouter();
     return {
       ...toRefs(state),
+    };
+  },
+  head() {
+    return {
+      title: "Messages",
     };
   },
 });

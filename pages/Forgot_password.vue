@@ -14,6 +14,10 @@ export default defineComponent({
     return {
       ...toRefs(state),
     };
+  },  head() {
+    return {
+      title: "Forgot Password",
+    };
   },
 });
 </script>

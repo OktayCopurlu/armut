@@ -15,6 +15,11 @@ export default defineComponent({
       ...toRefs(state),
     };
   },
+  head() {
+    return {
+      title: "Register as a Provider",
+    };
+  },
 });
 </script>
 
