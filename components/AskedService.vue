@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-containers">
     <div class="card" v-for="category in asked_services" :key="category._id">
       <h3 @click="showProfile">
         <span>{{ category.fullname }}</span>
@@ -70,7 +70,7 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   box-shadow: $tiny-shadow;
 }
-.card-container {
+.card-containers {
   display: flex;
   flex-wrap: wrap;
   font-family: $font-family;

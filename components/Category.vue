@@ -1,7 +1,7 @@
 <template>
-  <main class="container">
+  <main class="containers">
     <Search />
-    <div class="card-container">
+    <div class="card-containers">
       <div
         class="card"
         v-for="category in searchedCategories.length > 0
@@ -68,7 +68,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../static/index";
-.card-container {
+.card-containers {
   display: flex;
   flex-wrap: wrap;
   font-family: $font-family;

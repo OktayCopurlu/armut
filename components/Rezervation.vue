@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-containers">
     <div class="card" v-for="category in rezervations" :key="category._id">
       <h3>
         {{ category.category }}
@@ -44,7 +44,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../static/index";
 
-.card-container {
+.card-containers {
   display: flex;
   flex-wrap: wrap;
   font-family: $font-family;

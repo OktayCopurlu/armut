@@ -1,98 +1,86 @@
 <template>
-  <div class="main">
-    <form @submit.prevent="submit">
-      <div class="floating-form" v-if="provider">
-        <input
-          type="text"
-          id="search"
-          name="search"
-          v-model="search"
-          required
-        /><label class="label" for="search">What service do you provide?</label>
-      </div>
-      <div v-if="provider">
-        <div class="categories" v-for="ctgry in searchedProducts" :key="ctgry">
+  <v-app>
+    <div class="main">
+      <form @submit.prevent="submit">
+
+
+        <v-autocomplete
+          class="autocomplete"
+          solo
+          v-model="category"
+          :items="categories"
+          label="Search Service"
+        ></v-autocomplete>
+        <div class="radio-buttons" v-if="provider">
           <input
-            v-if="isShowing"
+            v-model="status"
             type="radio"
-            v-model="category"
-            :value="ctgry"
-            :id="ctgry"
-            name="categories"
+            id="person"
+            name="whoAreYou"
+            value="person"
+            required
           />
-          <label v-if="isShowing" :for="ctgry">{{ ctgry }}</label>
+          <label for="person"> Person</label>
+
+          <input
+            v-model="status"
+            type="radio"
+            id="company"
+            name="whoAreYou"
+            value="company"
+            required
+          />
+          <label for="company">Company</label><br />
         </div>
-      </div>
-      <div class="radio-buttons" v-if="provider">
-        <input
-          v-model="status"
-          type="radio"
-          id="person"
-          name="whoAreYou"
-          value="person"
-          required
-        />
-        <label for="person"> Person</label>
 
-        <input
-          v-model="status"
-          type="radio"
-          id="company"
-          name="whoAreYou"
-          value="company"
-          required
-        />
-        <label for="company">Company</label><br />
-      </div>
-
-      <div class="floating-form">
-        <input
-          id="full-name"
-          type="text"
-          name="txt"
-          required
-          v-model="fullname"
-        /><label class="label" for="full-name">Full Name</label>
-      </div>
-      <div class="floating-form">
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          v-model="email"
-        /><label class="label" for="email">Email</label>
-      </div>
-      <div class="floating-form">
-        <input
-          type="password"
-          name="pswd"
-          id="password"
-          required
-          v-model="password"
-        /><label class="label" for="password">Password</label>
-      </div>
-      <div class="floating-form">
-        <input
-          type="text"
-          id="address"
-          name="address"
-          required
-          v-model="address"
-        /><label class="label" for="address">Address</label>
-      </div>
-      <div class="floating-form">
-        <input
-          v-model="tel"
-          type="tel"
-          id="phone"
-          name="phone"
-          required
-        /><label class="label" for="phone">Phone</label>
-      </div>
-      <Button :text="button_text" />
-    </form>
-  </div>
+        <div class="floating-form">
+          <input
+            id="full-name"
+            type="text"
+            name="txt"
+            required
+            v-model="fullname"
+          /><label class="label" for="full-name">Full Name</label>
+        </div>
+        <div class="floating-form">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            v-model="email"
+          /><label class="label" for="email">Email</label>
+        </div>
+        <div class="floating-form">
+          <input
+            type="password"
+            name="pswd"
+            id="password"
+            required
+            v-model="password"
+          /><label class="label" for="password">Password</label>
+        </div>
+        <div class="floating-form">
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            v-model="address"
+          /><label class="label" for="address">Address</label>
+        </div>
+        <div class="floating-form">
+          <input
+            v-model="tel"
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+          /><label class="label" for="phone">Phone</label>
+        </div>
+        <Button :text="button_text" />
+      </form></div
+  ></v-app>
 </template>
 
 <script lang='ts'>
@@ -129,13 +117,6 @@ export default defineComponent({
     const { getAllCategoryList } = useCategoryList();
     getAllCategoryList();
 
-    const search: Ref<string> = ref("");
-    const searchedProducts = computed(() => {
-      return state.categories.filter((category) => {
-        return category.toLowerCase().indexOf(search.value.toLowerCase()) != -1;
-      });
-    });
-    const isShowing = computed(() => search.value.length > 2);
 
     const emptyForm = (): void => {
       state.fullname = "";
@@ -161,15 +142,11 @@ export default defineComponent({
         provider
       );
       emptyForm();
-
-
     };
     return {
       ...toRefs(state),
       submit,
-      searchedProducts,
-      search,
-      isShowing,
+
     };
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <footer class="site-footer">
-    <div class="containers">
+    <div class="containerss">
       <div class="rows">
         <section class="top-section">
           <h6>Categories</h6>
@@ -72,7 +72,7 @@
       </div>
       <hr />
     </div>
-    <div class="containers">
+    <div class="containerss">
       <div class="rows bottom">
         <section class="bottom-section">
           <p class="copyright-text">
@@ -133,7 +133,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.containers {
+.containerss {
   padding: 0 5vw;
   .rows {
     display: flex;

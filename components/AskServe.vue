@@ -1,5 +1,9 @@
 <template>
   <div class="main">
+    <h1>
+      Get offer for
+      <p>{{ category }}</p>
+    </h1>
     <form @submit.prevent="submit">
       <div class="floating-form">
         <select
@@ -136,7 +140,16 @@ export default defineComponent({
   * {
     font-size: 1rem;
   }
-
+  h1 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    p {
+      display: inline;
+      font-size: 1.3rem;
+      color: red;
+    }
+  }
   .floating-form {
     position: relative;
   }

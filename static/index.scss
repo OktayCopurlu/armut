@@ -37,6 +37,7 @@ $tiny-shadow: 1px 1px 3px $gray;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: white;
   &:focus,
   &:active,
   &:valid {
@@ -68,7 +69,7 @@ $tiny-shadow: 1px 1px 3px $gray;
     padding: 0;
     display: flex;
     justify-content: flex-end;
-    background-color: #416BA7;
+    background-color: #416ba7;
   }
   li {
     list-style: none;
