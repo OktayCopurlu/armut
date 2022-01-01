@@ -14,12 +14,12 @@ export default defineComponent({
     return {
       ...toRefs(state),
     };
-  },  head() {
+  },
+  head() {
     return {
       title: "Armut",
     };
   },
-
 });
 </script>
 

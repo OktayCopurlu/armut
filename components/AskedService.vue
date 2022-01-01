@@ -1,31 +1,31 @@
 <template>
-  <div class="card-containers">
-    <div class="card" v-for="category in asked_services" :key="category._id">
-      <h3 @click="showProfile">
-        <span>{{ category.fullname }}</span>
-      </h3>
-      <div v-if="modal" class="modal">
-        <div class="modal-content">
-          <span class="close-button">×</span>
-          <h1>{{ category.fullname }}</h1>
+  <v-app>
+    <div class="card-containers">
+      <div class="card" v-for="category in asked_services" :key="category._id">
+        <div class="text-center">
+          <Modal
+            :userID="category.asked_service_user"
+            :name="category.fullname"
+            :id="category._id"
+          />
         </div>
-      </div>
-      <section>
-        <div>
-          <h4>{{ category.category }}</h4>
-          <strong>{{ category.canton }}</strong>
-        </div>
-        <div>
-          <p>{{ category.message }}</p>
-          <strong>{{ category.city }}</strong>
-        </div>
-      </section>
-      <AskedServiceButton
-        :asked_service_user="category.asked_service_user"
-        :id="category._id"
-      />
-    </div>
-  </div>
+
+        <section>
+          <div>
+            <h4>{{ category.category }}</h4>
+            <strong>{{ category.canton }}</strong>
+          </div>
+          <div>
+            <p>{{ category.message }}</p>
+            <strong>{{ category.city }}</strong>
+          </div>
+        </section>
+        <AskedServiceButton
+          :asked_service_user="category.asked_service_user"
+          :id="category._id"
+        />
+      </div></div
+  ></v-app>
 </template>
 
 <script lang='ts'>
@@ -44,18 +44,14 @@ export default defineComponent({
     const state: Asked_serviceType = reactive({
       asked_services: computed(() => askedService.asked_services),
       userCategory: computed(() => currentUserInfo.category),
-      modal: false,
     });
 
     const { getAsked_service } = useAsked_service();
     getAsked_service(state.userCategory);
 
-    const showProfile = () => {
-      state.modal = !state.modal;
-    };
+    console.log(state.asked_services);
     return {
       ...toRefs(state),
-      showProfile,
     };
   },
 });
@@ -63,13 +59,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../static/index";
-.modal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: $tiny-shadow;
-}
+
 .card-containers {
   display: flex;
   flex-wrap: wrap;

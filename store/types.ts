@@ -11,6 +11,8 @@ export interface UserPageType {
   address: string;
   tel: string;
   photo: any;
+  canton: string;
+  city: string;
 }
 
 export interface currentUserInfoType extends UserPageType {
@@ -29,8 +31,12 @@ export interface RegisterFormType {
   status: string;
   category: string;
   service?: string;
+  canton: string;
+  city: string;
   categories: string[];
   filteredCategories: string[];
+  cantons: string[] | boolean[];
+  cities: string[] | object[];
 }
 
 export type SignUpPropsType = (
@@ -40,6 +46,8 @@ export type SignUpPropsType = (
   tel: string,
   address: string,
   status: string,
+  canton: string,
+  city: string,
   category: string,
   provider: boolean,
   service?: string
@@ -50,7 +58,9 @@ export type EditUserPropsType = (
   email: string,
   _id: string,
   address: string,
-  tel: string
+  tel: string,
+  canton: string,
+  city: string
 ) => Promise<void>;
 
 export interface LoginInfoType {
@@ -81,7 +91,7 @@ export interface AskServiceFormType {
   message: string;
   date: string;
   category: string;
-  cantons: CantonType[];
+  cantons: CantonType[] | boolean[];
   cities: Object[];
 }
 
@@ -100,7 +110,6 @@ export interface Categories {
 export interface Asked_serviceType {
   asked_services: Categories[];
   userCategory: string;
-  modal: boolean;
 }
 export interface RezervationType {
   rezervations: Categories[];

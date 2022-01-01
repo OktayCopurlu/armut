@@ -1,54 +1,44 @@
 <template>
-  <div class="main">
-    <h1>
-      Get offer for
-      <p>{{ category }}</p>
-    </h1>
-    <form @submit.prevent="submit">
-      <div class="floating-form">
-        <select
-          name="chooseCanton"
-          defaultValue="Choose Canton"
+  <v-app>
+    <div class="main">
+      <h1>
+        Get offer for
+        <p>{{ category }}</p>
+      </h1>
+      <form @submit.prevent="submit">
+        <v-autocomplete
+          class="autocomplete"
+          solo
+          :items="cantons"
+          v-model="canton"
+          label="Choose Canton"
           @change="selectCanton"
-        >
-          <option value=" ">Choose Canton</option>
-          <option
-            v-for="canton in cantons"
-            :key="canton._id"
-            :value="canton.canton"
-          >
-            {{ canton.canton }}
-          </option>
-        </select>
-      </div>
-      <div v-if="cities.length" class="floating-form">
-        <select
-          name="chooseCity"
-          defaultValue="Choose City"
-          @change="selectCity"
-        >
-          <option value=" ">Choose City</option>
-          <option v-for="city in cities" :key="city" :value="city">
-            {{ city }}
-          </option>
-        </select>
-      </div>
-      <div class="floating-form">
-        <input type="date" id="city" name="city" required v-model="date" />
-      </div>
-      <div class="floating-form">
-        <textarea
-          v-model="message"
-          type="text"
-          id="more-info"
-          name="more-info"
-          rows="4"
-          required
-        /><label class="label" for="more-info">More information</label>
-      </div>
-      <Button text="Get Offer" />
-    </form>
-  </div>
+        ></v-autocomplete>
+        <v-autocomplete
+          v-if="cities.length"
+          class="autocomplete"
+          solo
+          :items="cities"
+          v-model="city"
+          label="Choose City"
+        ></v-autocomplete>
+
+        <div class="floating-form">
+          <input type="date" id="city" name="city" required v-model="date" />
+        </div>
+        <div class="floating-form">
+          <textarea
+            v-model="message"
+            type="text"
+            id="more-info"
+            name="more-info"
+            rows="4"
+            required
+          /><label class="label" for="more-info">More information</label>
+        </div>
+        <Button text="Get Offer" />
+      </form></div
+  ></v-app>
 </template>
 
 <script lang='ts'>
@@ -57,12 +47,12 @@ import {
   defineComponent,
   toRefs,
   useRoute,
-  computed,
 } from "@nuxtjs/composition-api";
-import { CantonType, AskServiceFormType } from "~/store/types";
+import { AskServiceFormType } from "~/store/types";
 import { useAsked_service } from "~/store/createAsked_service";
 import { useCantons } from "~/store/canton";
 import { currentUserInfo, states } from "~/store";
+import _ from "lodash";
 export default defineComponent({
   setup() {
     const state: AskServiceFormType = reactive({
@@ -71,31 +61,27 @@ export default defineComponent({
       message: "",
       date: "",
       category: "",
-      cantons: computed(() => states.cantons as CantonType[]),
-      cities: computed(() => states.cities),
+      cantons: [],
+      cities: [],
     });
-
     const route = useRoute();
     state.category = route.value.path.substring(11).replace(/_/g, " ");
 
     const { createAsked_service } = useAsked_service();
     const { getCantons, getCities } = useCantons();
-
-    getCantons();
-
-    const selectCanton = async (e: {
-      target: { value: string };
-    }): Promise<void> => {
-      if (e.target.value !== " ") {
-        getCities(e.target.value);
-        state.canton = e.target.value;
-      } else {
-        states.cities = [];
-      }
+    const setCantonData = async (): Promise<void> => {
+      await getCantons();
+      state.cantons = _.map(states.cantons, (obj: { canton: string }) => {
+        return obj.canton;
+      });
     };
-    const selectCity = (e: { target: { value: string } }): void => {
-      state.city = e.target.value;
+    setCantonData();
+
+    const selectCanton = async (): Promise<void> => {
+      await getCities(state.canton);
+      state.cities = states.cities;
     };
+
     const emptyForm = (): void => {
       state.canton = "";
       state.city = "";
@@ -122,7 +108,6 @@ export default defineComponent({
       ...toRefs(state),
       submit,
       selectCanton,
-      selectCity,
     };
   },
 });

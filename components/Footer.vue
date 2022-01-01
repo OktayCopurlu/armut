@@ -37,7 +37,7 @@
             </li>
             <li class="photo" v-if="photo">
               <nuxt-link v-if="photo" to="/user_page"
-                ><img :src="photo" alt="user photo"
+                ><img class="user-photo" :src="photo" alt="user photo"
               /></nuxt-link>
             </li>
             <li v-else-if="isLogin">
@@ -153,6 +153,11 @@ export default defineComponent({
       width: 50%;
     }
   }
+}
+.user-photo {
+  width: 3rem;
+  border-radius: 100%;
+  margin-top: .6rem;
 }
 strong {
   color: #818c92;

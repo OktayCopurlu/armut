@@ -10,7 +10,7 @@
       :clickEvent="handleInfo"
       :asked_service_user="asked_service_user"
       :text="isOffered ? 'See Messages' : 'Give Offer'"
-      :class="isOffered ? 'yellow' : ''"
+      :class="isOffered ? 'yellow darken-2' : ''"
     />
   </nuxt-link>
 </template>
@@ -49,18 +49,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../static/index";
-$yellowButton: rgb(170, 137, 26);
 button {
   @include green-button(1rem);
   width: 93%;
   margin: 0 0.5rem;
   padding: 0.5rem;
-
-}
-.yellow {
-  background-color: $yellowButton;
-  &:hover {
-    background-color: lighten($yellowButton, 10%);
-  }
 }
 </style>

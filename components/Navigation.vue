@@ -1,3 +1,44 @@
+<script lang='ts'>
+import { currentUserInfo } from "~/store";
+import { initAuth, useLogin } from "~/store/auth";
+import {
+  computed,
+  ComputedRef,
+  defineComponent,
+  reactive,
+  toRefs,
+} from "@nuxtjs/composition-api";
+export default defineComponent({
+  setup() {
+    const state: {
+      isLogin: boolean | ComputedRef<boolean>;
+      photo: string | ComputedRef<boolean>;
+      avatar: any;
+    } = reactive({
+      isLogin: false,
+      photo: "",
+      avatar: "",
+    });
+
+    state.isLogin = computed(() => currentUserInfo.isLogin);
+    state.photo = computed(() => currentUserInfo.photo);
+    const makeAvatar = async () => {
+      initAuth();
+      const username = currentUserInfo.fullname;
+      const lastName = username.split(" ").pop() as string;
+      const firstName = username.split(" ").shift() as string;
+      const avatar = firstName.charAt(0) + lastName.charAt(0);
+      state.avatar = avatar.toUpperCase();
+    };
+    makeAvatar();
+    const { logout } = useLogin();
+    return {
+      ...toRefs(state),
+      logout,
+    };
+  },
+});
+</script>
 <template>
   <nav>
     <input type="checkbox" id="toggle" class="toggle-input" />
@@ -44,7 +85,7 @@
         /></nuxt-link>
       </li>
       <li v-else-if="isLogin">
-        <nuxt-link to="/user_page">My Account</nuxt-link>
+        <nuxt-link class="avatar" to="/user_page">{{ avatar }}</nuxt-link>
       </li>
 
       <li>
@@ -54,37 +95,6 @@
     </ul>
   </nav>
 </template>
-
-<script lang='ts'>
-import { currentUserInfo } from "~/store";
-import { useLogin } from "~/store/auth";
-import {
-  computed,
-  ComputedRef,
-  defineComponent,
-  reactive,
-  toRefs,
-} from "@nuxtjs/composition-api";
-export default defineComponent({
-  setup() {
-    const state: {
-      isLogin: boolean | ComputedRef<boolean>;
-      photo: string | ComputedRef<boolean>;
-    } = reactive({
-      isLogin: false,
-      photo: "",
-    });
-    state.isLogin = computed(() => currentUserInfo.isLogin);
-    state.photo = computed(() => currentUserInfo.photo);
-    const { logout } = useLogin();
-    return {
-      ...toRefs(state),
-      logout,
-    };
-  },
-});
-</script>
-
 <style lang="scss" scoped>
 @import "../static/index";
 nav {
@@ -133,6 +143,12 @@ ul {
       height: 100%;
     }
   }
+
+  .avatar {
+    background-color: blueviolet;
+    border-radius: 100%;
+    padding: 0.7vw;
+  }
 }
 
 .toggle-input {
@@ -172,6 +188,9 @@ ul {
       &:hover {
         opacity: 1;
       }
+    }
+    .avatar {
+      padding: 0.7rem;
     }
   }
 

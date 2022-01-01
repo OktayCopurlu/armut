@@ -17,6 +17,8 @@ export const currentUserInfo: currentUserInfoType = reactive({
   photo: "",
   provider: false,
   category: "",
+  canton: "",
+  city: "",
 });
 
 export const states: StateType = reactive({

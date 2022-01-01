@@ -19,6 +19,8 @@ export function initAuth(): void {
     currentUserInfo.photo = user.photo;
     currentUserInfo.provider = user.provider;
     currentUserInfo.category = user.category;
+    currentUserInfo.canton = user.canton;
+    currentUserInfo.city = user.city;
   }
 }
 

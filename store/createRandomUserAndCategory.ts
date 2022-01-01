@@ -37,7 +37,8 @@ export function useRandomUserAndCategory(): void {
     const address = getRandomString(15);
     const tel = getRandomTel(10);
     const provider = true;
-
+    const canton = "Zug";
+    const city = "Baar";
     register(
       fullname,
       email,
@@ -46,6 +47,8 @@ export function useRandomUserAndCategory(): void {
       status,
       address,
       tel,
+      canton,
+      city,
       provider
     );
   });

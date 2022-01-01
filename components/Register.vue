@@ -2,14 +2,12 @@
   <v-app>
     <div class="main">
       <form @submit.prevent="submit">
-
-
         <v-autocomplete
           class="autocomplete"
           solo
           v-model="category"
           :items="categories"
-          label="Search Service"
+          label="Choose Service"
         ></v-autocomplete>
         <div class="radio-buttons" v-if="provider">
           <input
@@ -60,6 +58,24 @@
             v-model="password"
           /><label class="label" for="password">Password</label>
         </div>
+        <section class="canton-city">
+          <v-autocomplete
+            class="autocomplete"
+            solo
+            :items="cantons"
+            v-model="canton"
+            label="Choose Canton"
+            @change="selectCanton"
+          ></v-autocomplete>
+          <v-autocomplete
+            class="autocomplete"
+            solo
+            :items="cities"
+            v-model="city"
+            label="Choose City"
+            @change="selectCanton"
+          ></v-autocomplete>
+        </section>
         <div class="floating-form">
           <input
             type="text"
@@ -89,13 +105,13 @@ import {
   defineComponent,
   toRefs,
   computed,
-  ref,
-  Ref,
 } from "@nuxtjs/composition-api";
 import { RegisterFormType } from "~/store/types";
 import { useStartServe } from "~/store/register";
 import { states } from "~/store";
 import { useCategoryList } from "~/store/categoryList";
+import { useCantons } from "~/store/canton";
+import _ from "lodash";
 export default defineComponent({
   props: ["button_text", "provider"],
   setup(props) {
@@ -108,15 +124,31 @@ export default defineComponent({
       status: "",
       category: "",
       service: "",
-
+      canton: "",
+      city: "",
       filteredCategories: [],
       categories: computed(() => states.categories),
+      cantons: [],
+      cities: [],
     });
 
     const { register } = useStartServe();
     const { getAllCategoryList } = useCategoryList();
     getAllCategoryList();
 
+    const { getCantons, getCities } = useCantons();
+    const setCantonData = async (): Promise<void> => {
+      await getCantons();
+      state.cantons = _.map(states.cantons, (obj: { canton: string }) => {
+        return obj.canton;
+      });
+    };
+    setCantonData();
+
+    const selectCanton = async (): Promise<void> => {
+      await getCities(state.canton);
+      state.cities = states.cities;
+    };
 
     const emptyForm = (): void => {
       state.fullname = "";
@@ -127,6 +159,8 @@ export default defineComponent({
       state.status = "";
       state.category = "";
       state.service = "";
+      state.canton = "";
+      state.city = "";
     };
     const provider = props.provider;
 
@@ -137,6 +171,8 @@ export default defineComponent({
         state.password,
         state.category,
         state.status,
+        state.canton,
+        state.city,
         state.address,
         state.tel,
         provider
@@ -146,7 +182,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       submit,
-
+      selectCanton,
     };
   },
 });
@@ -154,6 +190,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../static/index";
+.canton-city {
+  display: flex;
+  .autocomplete:nth-child(1) {
+    margin-right: 0.2rem;
+  }
+  .autocomplete:nth-child(2) {
+    margin-left: 0.2rem;
+  }
+}
 .main {
   border-radius: 5px;
   background-color: #f2f2f2;

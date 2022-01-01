@@ -9,6 +9,8 @@ export const LOGIN = gql`
 `;
 export const REGISTER = gql`
   mutation (
+    $canton: String!
+    $city: String!
     $fullname: String!
     $email: String!
     $password: String!
@@ -19,6 +21,8 @@ export const REGISTER = gql`
     $provider: Boolean!
   ) {
     register(
+      canton: $canton
+      city: $city
       fullname: $fullname
       email: $email
       password: $password
@@ -39,6 +43,8 @@ export const EDIT_USER = gql`
     $fullname: String!
     $tel: String!
     $_id: ID!
+    $canton: String!
+    $city: String!
   ) {
     editUser(
       address: $address
@@ -46,6 +52,8 @@ export const EDIT_USER = gql`
       fullname: $fullname
       tel: $tel
       _id: $_id
+      canton: $canton
+      city: $city
     ) {
       token
     }
@@ -219,6 +227,8 @@ export const GET_USER_INFO = gql`
       given_service
       given_offer
       given_offer_service
+      canton
+      city
     }
   }
 `;

@@ -23,6 +23,8 @@ export function useStartServe(): {
     password,
     category,
     status,
+    canton,
+    city,
     address,
     tel,
     provider
@@ -33,11 +35,12 @@ export function useStartServe(): {
       password,
       category,
       status,
+      canton,
+      city,
       address,
       tel,
       provider,
     };
-
     try {
       const response: LoginInfoType = await client.mutate({
         mutation: REGISTER,
@@ -55,6 +58,8 @@ export function useStartServe(): {
         currentUserInfo.isLogin = true;
         currentUserInfo.category = user.category;
         currentUserInfo.provider = user.provider;
+        currentUserInfo.canton = user.canton;
+        currentUserInfo.city = user.city;
       }
       if (currentUserInfo.token) {
         await router.push("/my-account");
@@ -78,7 +83,9 @@ export function useEditUser(): {
     email,
     fullname,
     tel,
-    _id
+    _id,
+    canton,
+    city,
   ): Promise<void> => {
     const payload = {
       address,
@@ -86,6 +93,8 @@ export function useEditUser(): {
       fullname,
       tel,
       _id,
+      canton,
+      city,
     };
     try {
       const response: TokenType = await client.mutate({
@@ -97,12 +106,15 @@ export function useEditUser(): {
       await context.app.$apolloHelpers.onLogin(token, "_", "");
       if (token) {
         const user = verifyJWT(token);
+
         currentUserInfo.fullname = user.fullname;
         currentUserInfo.email = user.email;
         currentUserInfo._id = user._id;
         currentUserInfo.provider = user.provider;
         currentUserInfo.token = token;
         currentUserInfo.isLogin = true;
+        currentUserInfo.canton = user.canton;
+        currentUserInfo.city = user.city;
       }
     } catch (error) {
       console.error(error);
@@ -132,6 +144,8 @@ export function useEditUser(): {
         currentUserInfo.token = token;
         currentUserInfo.isLogin = true;
         currentUserInfo.photo = user.photo;
+        currentUserInfo.canton = user.canton;
+        currentUserInfo.city = user.city;
       }
     } catch (error) {
       console.error(error);
