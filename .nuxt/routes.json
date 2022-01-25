@@ -1,0 +1,149 @@
+[
+  {
+    "name": "Cleaning",
+    "path": "/Cleaning",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Cleaning.vue",
+    "chunkName": "pages/Cleaning",
+    "_name": "_380ab095"
+  },
+  {
+    "name": "Fixing",
+    "path": "/Fixing",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Fixing.vue",
+    "chunkName": "pages/Fixing",
+    "_name": "_18a38e49"
+  },
+  {
+    "name": "Forgot_password",
+    "path": "/Forgot_password",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Forgot_password.vue",
+    "chunkName": "pages/Forgot_password",
+    "_name": "_2b725d6a"
+  },
+  {
+    "name": "Healty",
+    "path": "/Healty",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Healty.vue",
+    "chunkName": "pages/Healty",
+    "_name": "_04d71909"
+  },
+  {
+    "name": "Login",
+    "path": "/Login",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Login.vue",
+    "chunkName": "pages/Login",
+    "_name": "_3d00027d"
+  },
+  {
+    "name": "Others",
+    "path": "/Others",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Others.vue",
+    "chunkName": "pages/Others",
+    "_name": "_780be202"
+  },
+  {
+    "name": "Private-Lesson",
+    "path": "/Private-Lesson",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Private-Lesson.vue",
+    "chunkName": "pages/Private-Lesson",
+    "_name": "_72977604"
+  },
+  {
+    "name": "Register",
+    "path": "/Register",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Register.vue",
+    "chunkName": "pages/Register",
+    "_name": "_6272a93f"
+  },
+  {
+    "name": "Register-for-service",
+    "path": "/Register-for-service",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Register-for-service.vue",
+    "chunkName": "pages/Register-for-service",
+    "_name": "_9b3ff7ba"
+  },
+  {
+    "name": "Register-provider",
+    "path": "/Register-provider",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Register-provider.vue",
+    "chunkName": "pages/Register-provider",
+    "_name": "_52c3dc22"
+  },
+  {
+    "name": "Renovation",
+    "path": "/Renovation",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Renovation.vue",
+    "chunkName": "pages/Renovation",
+    "_name": "_703e0be2"
+  },
+  {
+    "name": "Transportation",
+    "path": "/Transportation",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\Transportation.vue",
+    "chunkName": "pages/Transportation",
+    "_name": "_7605def0"
+  },
+  {
+    "name": "user-page",
+    "path": "/user-page",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\index.vue",
+    "chunkName": "pages/user-page/index",
+    "_name": "_59fed746"
+  },
+  {
+    "name": "user-page-asked-service",
+    "path": "/user-page/asked-service",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\asked-service\\\\index.vue",
+    "chunkName": "pages/user-page/asked-service/index",
+    "_name": "_0a4b8c52"
+  },
+  {
+    "name": "user-page-messages",
+    "path": "/user-page/messages",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\messages\\\\index.vue",
+    "chunkName": "pages/user-page/messages/index",
+    "_name": "_6e9f5c51"
+  },
+  {
+    "name": "user-page-rezervation",
+    "path": "/user-page/rezervation",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\rezervation\\\\index.vue",
+    "chunkName": "pages/user-page/rezervation/index",
+    "_name": "_1ae41924"
+  },
+  {
+    "name": "user-page-asked-service-id",
+    "path": "/user-page/asked-service/:id",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\asked-service\\\\_id.vue",
+    "chunkName": "pages/user-page/asked-service/_id",
+    "_name": "_428ac5ff"
+  },
+  {
+    "name": "user-page-messages-slug",
+    "path": "/user-page/messages/:slug",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\user-page\\\\messages\\\\_slug.vue",
+    "chunkName": "pages/user-page/messages/_slug",
+    "_name": "_6ce8bb09"
+  },
+  {
+    "name": "ask-serve-slug",
+    "path": "/ask-serve/:slug?",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\ask-serve\\\\_slug.vue",
+    "chunkName": "pages/ask-serve/_slug",
+    "_name": "_6124896b"
+  },
+  {
+    "name": "reset-password-id",
+    "path": "/reset-password/:id?",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\reset-password\\\\_id.vue",
+    "chunkName": "pages/reset-password/_id",
+    "_name": "_bec8fa96"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\41779\\\\Desktop\\\\armut\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_083380f4"
+  }
+]

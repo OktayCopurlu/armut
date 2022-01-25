@@ -1,0 +1,74 @@
+{
+  "IoSocketStatus": {
+    "description": "Auto imported from node_modules/nuxt-socket-io/lib/components/SocketStatus.js"
+  },
+  "AskedService": {
+    "description": "Auto imported from components/AskedService.vue"
+  },
+  "AskedServiceButton": {
+    "description": "Auto imported from components/AskedServiceButton.vue"
+  },
+  "AskServe": {
+    "description": "Auto imported from components/AskServe.vue"
+  },
+  "Button": {
+    "description": "Auto imported from components/Button.vue"
+  },
+  "Category": {
+    "description": "Auto imported from components/Category.vue"
+  },
+  "EmpyMessageWindow": {
+    "description": "Auto imported from components/EmpyMessageWindow.vue"
+  },
+  "Footer": {
+    "description": "Auto imported from components/Footer.vue"
+  },
+  "ForgotPassword": {
+    "description": "Auto imported from components/ForgotPassword.vue"
+  },
+  "GiveOffer": {
+    "description": "Auto imported from components/GiveOffer.vue"
+  },
+  "Home": {
+    "description": "Auto imported from components/Home.vue"
+  },
+  "Login": {
+    "description": "Auto imported from components/Login.vue"
+  },
+  "Message": {
+    "description": "Auto imported from components/Message.vue"
+  },
+  "MessageUserCard": {
+    "description": "Auto imported from components/MessageUserCard.vue"
+  },
+  "MessageWith": {
+    "description": "Auto imported from components/MessageWith.vue"
+  },
+  "Modal": {
+    "description": "Auto imported from components/Modal.vue"
+  },
+  "Navigation": {
+    "description": "Auto imported from components/Navigation.vue"
+  },
+  "Register": {
+    "description": "Auto imported from components/Register.vue"
+  },
+  "RegisterStatus": {
+    "description": "Auto imported from components/RegisterStatus.vue"
+  },
+  "ResetPassword": {
+    "description": "Auto imported from components/ResetPassword.vue"
+  },
+  "Rezervation": {
+    "description": "Auto imported from components/Rezervation.vue"
+  },
+  "Search": {
+    "description": "Auto imported from components/Search.vue"
+  },
+  "UserPage": {
+    "description": "Auto imported from components/UserPage.vue"
+  },
+  "UserPageNavigation": {
+    "description": "Auto imported from components/UserPageNavigation.vue"
+  }
+}
