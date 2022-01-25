@@ -59,8 +59,8 @@
         <nuxt-link
           :to="
             isOffered
-              ? `/user_page/messages/${_id}`
-              : `/user_page/asked_service/${id}`
+              ? `/user-page/messages/${_id}`
+              : `/user-page/asked-service/${id}`
           "
         >
           <v-btn

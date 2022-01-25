@@ -13,7 +13,7 @@ const protectedRouter = () => {
     (route.value.path == "/login" || route.value.path.includes("/register"))
   ) {
     return router.push("/");
-  } else if (!hasToken && route.value.path.includes("/ask_serve")) {
+  } else if (!hasToken && route.value.path.includes("/ask-serve")) {
     return router.push("/login");
   }
 };

@@ -2,8 +2,8 @@
   <nuxt-link
     :to="
       isOffered
-        ? `/user_page/messages/${asked_service_user}`
-        : `/user_page/asked_service/${id}`
+        ? `/user-page/messages/${asked_service_user}`
+        : `/user-page/asked-service/${id}`
     "
   >
     <Button

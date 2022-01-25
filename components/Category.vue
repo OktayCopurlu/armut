@@ -21,7 +21,7 @@
           </p>
           <!-- <p>4.5 (2.000.000 comments)</p> -->
         </section>
-        <nuxt-link :to="`/ask_serve/${category.category.replace(/ /g, '_')}`">
+        <nuxt-link :to="`/ask-serve/${category.category.replace(/ /g, '_')}`">
           <Button :value="category.category" :text="'Rezervation'"
         /></nuxt-link>
       </div>

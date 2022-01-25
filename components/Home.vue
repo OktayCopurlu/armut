@@ -81,7 +81,7 @@ export default defineComponent({
 
     const router = useRouter();
     const routeAskServicePage = () => {
-      router.push("/ask_serve/" + search.value);
+      router.push("/ask-serve/" + search.value);
     };
     return {
       search,

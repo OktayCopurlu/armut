@@ -2,16 +2,16 @@
   <nav>
     <ul>
       <li>
-        <nuxt-link to="/user_page/messages">Messages</nuxt-link>
+        <nuxt-link to="/user-page/messages">Messages</nuxt-link>
       </li>
       <li v-if="provider">
-        <nuxt-link to="/user_page/asked_service">Asked Service</nuxt-link>
+        <nuxt-link to="/user-page/asked-service">Asked Service</nuxt-link>
       </li>
       <li v-else>
-        <nuxt-link to="/user_page/rezervation">My Rezervation</nuxt-link>
+        <nuxt-link to="/user-page/rezervation">My Rezervation</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/user_page">Profile</nuxt-link>
+        <nuxt-link to="/user-page">Profile</nuxt-link>
       </li>
     </ul>
   </nav>

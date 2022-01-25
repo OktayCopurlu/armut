@@ -80,12 +80,12 @@ export default defineComponent({
         <nuxt-link v-if="!isLogin" to="/register">Register</nuxt-link>
       </li>
       <li class="photo" v-if="photo">
-        <nuxt-link v-if="photo" to="/user_page"
+        <nuxt-link v-if="photo" to="/user-page"
           ><img :src="photo" alt="user photo"
         /></nuxt-link>
       </li>
       <li v-else-if="isLogin">
-        <nuxt-link class="avatar" to="/user_page">{{ avatar }}</nuxt-link>
+        <nuxt-link class="avatar" to="/user-page">{{ avatar }}</nuxt-link>
       </li>
 
       <li>

@@ -6,7 +6,7 @@
           v-for="user in users"
           :key="user"
           @click.native="hideList"
-          :to="`/user_page/messages/${user}`"
+          :to="`/user-page/messages/${user}`"
         >
           <MessageUserCard :_id="user" />
         </nuxt-link>

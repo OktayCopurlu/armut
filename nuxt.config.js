@@ -11,7 +11,7 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "Whatever services you need are in Armut.com" },
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{}],
@@ -44,7 +44,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://localhost:4000/graphql",
+        httpEndpoint: "https://armut-server.herokuapp.com/",
       },
     },
   },

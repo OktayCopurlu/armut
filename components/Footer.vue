@@ -36,12 +36,12 @@
               <nuxt-link v-if="!isLogin" to="/register">Register</nuxt-link>
             </li>
             <li class="photo" v-if="photo">
-              <nuxt-link v-if="photo" to="/user_page"
+              <nuxt-link v-if="photo" to="/user-page"
                 ><img class="user-photo" :src="photo" alt="user photo"
               /></nuxt-link>
             </li>
             <li v-else-if="isLogin">
-              <nuxt-link to="/user_page">My Account</nuxt-link>
+              <nuxt-link to="/user-page">My Account</nuxt-link>
             </li>
 
             <li>

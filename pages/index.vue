@@ -2,7 +2,7 @@
   <Home />
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { reactive, defineComponent, toRefs } from "@nuxtjs/composition-api";
 import { initAuth } from "../store/auth";
 import protectedRouter from "~/protectRouter";
@@ -23,5 +23,6 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
+
+

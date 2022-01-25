@@ -6,7 +6,7 @@
       </h3>
 
       <p>{{ category.message }}</p>
-      <nuxt-link to="/user_page/messages">
+      <nuxt-link to="/user-page/messages">
         <Button :text="'See Offers'"
       /></nuxt-link>
     </div>
